@@ -15,7 +15,7 @@ class sellerPostPage extends React.Component{
             Amount: 0,
             
             Notes: "",
-            submittedPosts: []
+            SubmittedPosts: []
 
         }
         let getExchangeRates = () =>{
@@ -55,9 +55,13 @@ class sellerPostPage extends React.Component{
               <input type="text"  placeholder="Notes" />
           </form>
       
-          <button onClick={()=>{console.log(this.state.SelectedLocation, ((this.state.Amount * (this.state.ExchangeRates["rates"][this.state.SelectedCurrency])).toFixed(2)), this.state.Notes)}} className="submitButton">
-              Submit
-              </button> 
+          <button onClick={(event)=>{let submissionContentArray = [this.state.SelectedLocation, parseFloat(this.state.Amount), parseFloat(((this.state.Amount * (this.state.ExchangeRates["rates"][this.state.SelectedCurrency])).toFixed(2))), this.state.Notes]; 
+            {this.setState({SubmittedPosts:this.state.SubmittedPosts.concat([submissionContentArray])})}
+            }} >
+            Submit
+          </button> 
+          <button onClick={(event)=>{console.log(this.state.SubmittedPosts)}}>console
+            </button>
       
           <div className="apioutput">
           </div>
