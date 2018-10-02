@@ -13,9 +13,9 @@ class sellerPostPage extends React.Component{
             SelectedLocation: "NULL",
             SelectedCurrency: "NULL",
             Amount: 0,
-            
             Notes: "",
-            SubmittedPosts: []
+            SubmittedPosts: [],
+            PostAgainButtonStatus: true
 
         }
         let getExchangeRates = () =>{
@@ -31,17 +31,16 @@ class sellerPostPage extends React.Component{
         getExchangeRates();
     }
 
-    render() {
-
-    return (
-        <div className="Seller">
+    render()  {
+  
+    let submitForms = <div>
           <h1> Post banknotes to sell</h1>
-          <select value={this.state.SelectedLocation} onChange={(event)=>{this.setState({SelectedLocation:event.target.value})}} className="sellerLocation">
+          <select value={this.state.SelectedLocation} onChange={(event)=>{this.setState({SelectedLocation:event.target.value})}} >
               <option value="NULL">Select Location</option>
               <option value="Atlanta">Atlanta</option>  
           </select>
        
-          <select value={this.state.SelectedCurrency} onChange={(event)=>{this.setState({SelectedCurrency:event.target.value})}} className="currencyList">
+          <select value={this.state.SelectedCurrency} onChange={(event)=>{this.setState({SelectedCurrency:event.target.value})}} >
               <option value="NULL">Select Currency</option>
               <option value="CAD">Canadian Dollars (CAD)</option>
               <option value="USD">US Dollars (USD)</option>    
@@ -55,19 +54,48 @@ class sellerPostPage extends React.Component{
               <input type="text"  placeholder="Notes" />
           </form>
       
-          <button onClick={(event)=>{let submissionContentArray = [this.state.SelectedLocation, parseFloat(this.state.Amount), parseFloat(((this.state.Amount * (this.state.ExchangeRates["rates"][this.state.SelectedCurrency])).toFixed(2))), this.state.Notes]; 
-            {this.setState({SubmittedPosts:this.state.SubmittedPosts.concat([submissionContentArray])})}
-            }} >
+          <button onClick={(event)=>{let submissionContentArray = [this.state.SelectedLocation, this.state.SelectedCurrency, parseFloat(this.state.Amount), parseFloat(((this.state.Amount * (this.state.ExchangeRates["rates"][this.state.SelectedCurrency])).toFixed(2))), this.state.Notes]; 
+            {this.setState({SubmittedPosts:this.state.SubmittedPosts.concat([submissionContentArray])})}; 
+            {this.setState({PostAgainButtonStatus:false})};
+            }}>
             Submit
           </button> 
-          <button onClick={(event)=>{console.log(this.state.SubmittedPosts)}}>console
+
+          <button onClick={(event)=>{console.log(this.state.SubmittedPosts)}}>
+            console
             </button>
-      
-          <div className="apioutput">
-          </div>
       </div>
-        )
+        
+        let alreadySubmitted = <div>
+        <h1>submitted!</h1>
+        <button onClick={(event)=>{this.setState({PostAgainButtonStatus:true})}}>Submit Again
+            </button>
+        </div>
+        
+        let buyerSearchPage = <div >
+        <h1>Browse banknotes</h1>
+        <select >
+            <option value="NULL" defaultValue>Select Location</option>
+            <option value="Atlanta">Atlanta</option>
+      
+        </select>
+   
+         <select >
+            <option value="NULL" defaultValue>Select Currency</option>
+            <option value="CAD">Canadian Dollar (CAD)</option>
+            <option value="USD">US Dollars (USD)</option>    
+        </select>
+        <button >Search</button>
+    </div>
+        
+        
+        let newVar;
+       this.state.PostAgainButtonStatus ? newVar = submitForms : newVar = alreadySubmitted
+        return(newVar)
+
+        
     }
+
     };
     
 export default sellerPostPage;

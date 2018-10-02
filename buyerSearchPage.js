@@ -25,23 +25,20 @@ class buyerSearchPage extends React.Component{
 
 render() {
     return (
-    <div className="Buyer">
+    <div >
        <h1>Browse banknotes</h1>
-       <select className="buyerLocation">
+       <select >
            <option value="NULL" defaultValue>Select Location</option>
            <option value="Atlanta">Atlanta</option>
      
        </select>
   
-        <select className="buyerCurrencyList">
+        <select >
            <option value="NULL" defaultValue>Select Currency</option>
            <option value="CAD">Canadian Dollar (CAD)</option>
            <option value="USD">US Dollars (USD)</option>    
        </select>
-       <button className="buyerSubmitButton">Search</button>
-       <div className="logOutput">
-         
-      </div>
+       <button >Search</button>
    </div>
     )
 }

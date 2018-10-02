@@ -32,5 +32,4 @@ const firstRoute = () => {
 
 
 
-
 export default App;
