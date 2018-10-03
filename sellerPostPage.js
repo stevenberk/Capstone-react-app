@@ -67,6 +67,13 @@ let submitForms = <div>
         console.log(submissionContentArray)
         axios.get('http://localhost:3006/')
             .then(response => console.log(response["data"]))
+        axios.post('http://localhost:3006/submissions', {
+            location: submissionContentArray[0],
+            currency: submissionContentArray[1],
+            amount: submissionContentArray[2],
+            valueInUSD: submissionContentArray[3],
+            notes: submissionContentArray[4]
+        })
         }}
         >
         Submit

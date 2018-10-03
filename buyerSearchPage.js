@@ -1,13 +1,28 @@
 import React from 'react';
+import axios from 'axios';
 
 class buyerSearchPage extends React.Component{
     constructor(props){
         super(props);
         this.state ={ 
-            SearchResults : [],
-            SelectedLocation: "NULL",
-            SelectedCurrency: "NULL"
+            SearchResults : [
+            {location: "NULL",
+            currency: "NULL",
+            amount: 0,
+            valueInUSD: 0,
+            notes: ""
+            }    
+            ]
         }
+    axios.get('http://localhost:3006/submissions')
+        .then(response => {
+            this.setState({
+            SearchResults : response["data"]
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+         });
     }
     
 
@@ -27,7 +42,7 @@ render() {
         <option value="CAD">Canadian Dollar (CAD)</option>
         <option value="USD">US Dollars (USD)</option>    
     </select>
-   <button onClick={(event)=>{console.log(this.state.SelectedCurrency, this.state.SelectedLocation)}}>Search</button>
+   <button onClick={(event)=>{console.log(this.state.SearchResults)}}>Search</button>
 </div>
     )
 }
