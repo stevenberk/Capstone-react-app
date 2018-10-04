@@ -8,7 +8,9 @@ let ArrayMapperRenderer = (props)=> <div>
             <p>{post.currency}</p> 
             <p>{post.location}</p>
             <p>Amount: {post.amount}</p> 
-            <p>Value in USD at time of submission: {post.valueInUSD}</p>  
+            <p>Value in USD at time of submission: {post.valueInUSD}</p>
+            <p>Seller Email: {post.sellerEmail}</p>
+            <p>Notes: {post.notes}</p>  
         </li> 
     )}
     </ul>
@@ -24,6 +26,7 @@ class buyerSearchPage extends React.Component{
                     currency: "NULL",
                     amount: 0,
                     valueInUSD: 0,
+                    sellerEmail: "",
                     notes: ""
                 }    
             ],

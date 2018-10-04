@@ -15,6 +15,7 @@ class sellerPostPage extends React.Component{
             Amount: 0,
             Notes: "",
             SubmittedPosts: [],
+            SellerEmail: localStorage.getItem("email"),
             PostAgainButtonStatus: true
         }
  
@@ -29,6 +30,7 @@ class sellerPostPage extends React.Component{
             )
         }
         getExchangeRates();
+
     }
 
     render()  {
@@ -59,24 +61,28 @@ let submitForms = <div>
     </form> 
 
     <button onClick={(event)=>{
+        if(localStorage.length === 0){
+            alert('Please log in to post a currency')
+        }else{
         let submissionContentArray = [
             this.state.SelectedLocation, 
             this.state.SelectedCurrency, 
             parseFloat(this.state.Amount), 
             parseFloat(((this.state.Amount * (this.state.ExchangeRates["rates"][this.state.SelectedCurrency])).toFixed(2))), 
+            this.state.SellerEmail,
             this.state.Notes]; 
-        this.setState({SubmittedPosts:this.state.SubmittedPosts.concat([submissionContentArray])}); 
-        this.setState({PostAgainButtonStatus:false})
-        console.log(submissionContentArray)
-        // axios.get('http://localhost:3006/')
-        //     .then(response => console.log(response["data"]))
+            this.setState({SubmittedPosts:this.state.SubmittedPosts.concat([submissionContentArray])}); 
+            this.setState({PostAgainButtonStatus:false})
+            // console.log(submissionContentArray)
         axios.post('http://localhost:3006/submissions', {
             location: submissionContentArray[0],
             currency: submissionContentArray[1],
             amount: submissionContentArray[2],
             valueInUSD: submissionContentArray[3],
-            notes: submissionContentArray[4]
+            sellerEmail: submissionContentArray[4],
+            notes: submissionContentArray[5]
         })
+        }
         }}
         >
         Submit

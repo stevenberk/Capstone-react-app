@@ -1,12 +1,20 @@
 import React from "react";
 import buyerSearchPage from './buyerSearchPage';
 import sellerPostPage from './sellerPostPage';
+import login from './login';
+
 import { BrowserRouter, Route, Link } from "react-router-dom";
 
 const App = () => (
   <BrowserRouter>
     <div>
-      <ul> 
+      <h6>
+        <Link to="/logout">Logout</Link>
+      </h6>
+      <ul>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
         <li>
           <Link to="/sell">Sell</Link>
         </li>
@@ -14,20 +22,21 @@ const App = () => (
           <Link to="/buy">Buy</Link>
         </li>
       </ul>
-      <Route path="/" component={firstRoute} exact />
+      <Route path="/" component={login} exact/>
+      <Route path="/login" component={login} />
+      <Route path="/logout" component={logout} />
       <Route path="/buy" component={buyerSearchPage} />
       <Route path="/sell" component={sellerPostPage} />
     </div>
   </BrowserRouter> 
 )
 
-
-
-
-const firstRoute = () => {
+let logout = () =>{
+  localStorage.removeItem("email");
+  localStorage.removeItem("token");
   return (
-    <h1>homepage</h1>
-  ) 
+    <h1>Logged out!</h1>
+  )
 }
 
 
