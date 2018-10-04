@@ -39,12 +39,15 @@ let submitForms = <div>
     </h1>
     <select value={this.state.SelectedLocation} onChange={(event)=>{this.setState({SelectedLocation:event.target.value})}} >
         <option value="NULL">Select Location</option>
-        <option value="Atlanta">Atlanta</option>  
+        <option value="Atlanta">Atlanta</option>
+        <option value="Boston">Boston</option>
+        <option value="Los Angeles">Los Angeles</option>  
     </select>
     <select value={this.state.SelectedCurrency} onChange={(event)=>{this.setState({SelectedCurrency:event.target.value})}} >
         <option value="NULL">Select Currency</option>
         <option value="CAD">Canadian Dollars (CAD)</option>
-        <option value="USD">US Dollars (USD)</option>    
+        <option value="USD">US Dollars (USD)</option>
+        <option value="GBP">GB Pounds (GBP)</option>    
     </select>
       
     <form value={this.state.Amount} onChange={(event)=>{this.setState({Amount:event.target.value})}}>
@@ -65,8 +68,8 @@ let submitForms = <div>
         this.setState({SubmittedPosts:this.state.SubmittedPosts.concat([submissionContentArray])}); 
         this.setState({PostAgainButtonStatus:false})
         console.log(submissionContentArray)
-        axios.get('http://localhost:3006/')
-            .then(response => console.log(response["data"]))
+        // axios.get('http://localhost:3006/')
+        //     .then(response => console.log(response["data"]))
         axios.post('http://localhost:3006/submissions', {
             location: submissionContentArray[0],
             currency: submissionContentArray[1],
