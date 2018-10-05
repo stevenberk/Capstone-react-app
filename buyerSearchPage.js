@@ -7,7 +7,7 @@ let ArrayMapperRenderer = (props)=>
         {props.submissions.map(post =>
         <li>
             <p>{post.location}</p>
-            <p>Amount: {post.amount} {post.currency}</p> 
+            <p>{post.amount} {post.currency}</p> 
             <p>Value in USD at time of submission: {post.valueInUSD}</p>
             <p>Seller Email: {post.sellerEmail}</p>
             <p>Notes: {post.notes}</p>  
@@ -15,8 +15,6 @@ let ArrayMapperRenderer = (props)=>
     )}
     </ul>
 </div>  
-
-
 
 class buyerSearchPage extends React.Component{
     constructor(props){
@@ -34,6 +32,7 @@ class buyerSearchPage extends React.Component{
             ],
             SelectedLocation: "NULL",
             SelectedCurrency: "NULL",
+            isLoggedin: true
     }
     axios.get('http://localhost:3006/submissions', {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}})
         .then(response => {
@@ -41,33 +40,19 @@ class buyerSearchPage extends React.Component{
             SearchResults : response["data"]
             })
         })  
-        .catch(function (error) {
-           
-         });
+        .catch((event)=> {
+            this.setState({
+               isLoggedin:false
+                })
+        }) ;
 
-    // axios.get('http://localhost:3006/tester')
-    // .then(response => {
-    //     console.log(response.data)
-    // })
-    // .catch(function (error) {
-    //     console.log(error);
-    //  });
-
-    //  axios.post('http://localhost:3006/api/posts', } )
-    //  .then(response => {
-    //      console.log(response, "yes")
-    //  })
-    //  .catch(function (error) {
-    //      console.log("error");
-    //   });
     }
-    
 
 render() {
-return (
-<div>
+
+let displayIfLoggedIn = <div>
     <h1>
-        Browse banknotes, 
+        Browse banknotes 
     </h1>
     <select value={this.state.SelectedLocation} onChange={(event)=>{this.setState({SelectedLocation:event.target.value})}} >
        <option value="NULL">Select Location</option>
@@ -82,13 +67,20 @@ return (
         <option value="USD">US Dollars (USD)</option>
         <option value="GBP">GB Pounds (GBP)</option>     
     </select>
+    
   <ArrayMapperRenderer submissions={this.state.SearchResults.filter(entry =>(
       entry.location === this.state.SelectedLocation &&
-      entry.currency === this.state.SelectedCurrency)
-  )}/>
+      entry.currency === this.state.SelectedCurrency))}/>
 </div>
-)
-   
+
+let pleaseLogIn = 
+<div>
+    <h1>Please Log In</h1>
+</div>
+
+let turnaryOutputDisplay;
+this.state.isLoggedin ? turnaryOutputDisplay = displayIfLoggedIn : turnaryOutputDisplay = pleaseLogIn
+return (turnaryOutputDisplay)   
 }
 }
 
