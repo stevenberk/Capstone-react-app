@@ -32,19 +32,24 @@ class buyerSearchPage extends React.Component{
             ],
             SelectedLocation: "NULL",
             SelectedCurrency: "NULL",
-            isLoggedin: true
+            loginFlag: false
     }
-    axios.get('http://localhost:3006/submissions', {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}})
+    axios.get('http://localhost:3006/isloggedin', {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}})
         .then(response => {
-            this.setState({
-            SearchResults : response["data"]
-            })
-        })  
-        .catch((event)=> {
-            this.setState({
-               isLoggedin:false
-                })
-        }) ;
+            if (response.data === "yes" && this.state.loginFlag === false){
+                this.setState({loginFlag : true});
+                    axios.get('http://localhost:3006/submissions', {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}})
+                    .then(response => {
+                    this.setState({
+                        SearchResults : response["data"]
+                        })
+                    }) 
+                }else{
+                console.log(response.data)
+                    }
+                }).catch(console.log("user is not logged in"))
+     
+        
 
     }
 
@@ -79,7 +84,7 @@ let pleaseLogIn =
 </div>
 
 let turnaryOutputDisplay;
-this.state.isLoggedin ? turnaryOutputDisplay = displayIfLoggedIn : turnaryOutputDisplay = pleaseLogIn
+!this.state.loginFlag ? turnaryOutputDisplay = pleaseLogIn : turnaryOutputDisplay = displayIfLoggedIn 
 return (turnaryOutputDisplay)   
 }
 }

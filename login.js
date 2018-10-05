@@ -32,7 +32,6 @@ class login extends React.Component{
         .then(response => {
             if (response.data === "yes" && this.state.loginFlag === false){
                 this.setState({loginFlag : true});
-                console.log("made it this far")
             }else{
                 console.log(response.data)
             }

@@ -16,7 +16,8 @@ class sellerPostPage extends React.Component{
             Notes: "",
             SubmittedPosts: [],
             SellerEmail: localStorage.getItem("email"),
-            PostAgainButtonStatus: true
+            PostAgainButtonStatus: true,
+            loginFlag: false,
         }
  
         let getExchangeRates = () =>{
@@ -29,7 +30,18 @@ class sellerPostPage extends React.Component{
                 }
             )
         }
-        getExchangeRates();
+        
+
+        axios.get('http://localhost:3006/isloggedin', {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}})
+        .then(response => {
+            if (response.data === "yes" && this.state.loginFlag === false){
+                this.setState({loginFlag : true})
+                getExchangeRates();
+                ;
+            }else{
+                console.log(response.data)
+            }
+        }).catch(console.log("user is not logged in"))
 
     }
 
@@ -61,7 +73,6 @@ let submitForms = <div>
     </form> 
 
     <button onClick={(event)=>{
-        console.log(this.state.sellerEmail);
         let submissionContentArray = [
             this.state.SelectedLocation, 
             this.state.SelectedCurrency, 
@@ -70,8 +81,7 @@ let submitForms = <div>
             this.state.SellerEmail,
             this.state.Notes]; 
             this.setState({SubmittedPosts:this.state.SubmittedPosts.concat([submissionContentArray])}); 
-            
-            // console.log(submissionContentArray)
+          
         axios.post('http://localhost:3006/submissions',
             {
             amount: submissionContentArray[2],
@@ -101,8 +111,15 @@ let alreadySubmitted = <div>
 </button>
 </div>
 
+let pleaseLogOn =
+<div>
+    <h1>
+        Please sign in
+    </h1>
+</div>
 let turnaryOutput;
-this.state.PostAgainButtonStatus ? turnaryOutput = submitForms : turnaryOutput = alreadySubmitted
+!this.state.loginFlag ? turnaryOutput = pleaseLogOn : this.state.PostAgainButtonStatus ? turnaryOutput = submitForms : turnaryOutput = alreadySubmitted
+
 return(turnaryOutput)
 
 }

@@ -2,8 +2,10 @@ import React from "react";
 import buyerSearchPage from './buyerSearchPage';
 import sellerPostPage from './sellerPostPage';
 import login from './login';
-
+import axios from 'axios';
 import { BrowserRouter, Route, Link } from "react-router-dom";
+
+
 
 const App = () => (
   <BrowserRouter>
@@ -35,8 +37,8 @@ class signup extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-        Email: "null",
-        Password: "null",
+        email: "null",
+        password: "null",
         ConfirmPassword: "nothing here"
     }
   }
@@ -49,10 +51,10 @@ class signup extends React.Component{
         <input type="password" placeholder="Confirm Password" onChange={(event)=>{this.setState({ConfirmPassword:event.target.value})}}/>
     </form>
     <button onClick={(event)=>{
-      if (this.state.password === this.state.ConfirmPassword){
+      if (this.state.password === this.state.ConfirmPassword && this.state.email !== "null"){
         alert("passwords match")
       }else{
-        alert("passwords dont match")
+        alert("passwords dont match or email is invalid")
       }
     }}>
       Sign up!
