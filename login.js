@@ -1,10 +1,11 @@
 import React from 'react';
 import axios from 'axios';
+import Signup from "./signup"
+import Loginfrom from './Loginform'
 
 
 
-
-class login extends React.Component{
+class Login extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -20,7 +21,8 @@ class login extends React.Component{
             ],
             email: "null",
             password: "password",
-            loginFlag: false
+            loginFlag: false,
+            signupFlag: false
         }
         axios.get('http://localhost:3006/posts')
         .then(response => {
@@ -58,13 +60,16 @@ render(){
            localStorage.removeItem("email");
            localStorage.removeItem("token");
            this.setState({loginFlag:false})
-       }}>Log Out</button>
+       }}>
+       Log Out
+       </button>
    </div>  
 
 
 let loginForms = 
 <div>
     <form>
+        <label>Please Log In</label>
         <input type="text" placeholder="Email" onChange={(event)=>{this.setState({email:event.target.value})}}/>
         <input type="password" placeholder="Password" onChange={(event)=>{this.setState({password:event.target.value})}}/>
     </form>
@@ -85,6 +90,16 @@ let loginForms =
     }>
         Login
     </button>
+    <button onClick={(click)=>{
+        this.setState({signupFlag:true})
+    }}>
+        signup
+    </button>
+</div>
+
+let signuppage =
+<div>
+    <Signup />
 </div>
 
 let accountInfo = 
@@ -94,11 +109,12 @@ let accountInfo =
 </div>    
 
 let turnaryLoginPageOutpage;
-this.state.loginFlag ? turnaryLoginPageOutpage = accountInfo : turnaryLoginPageOutpage = loginForms
+this.state.loginFlag ? turnaryLoginPageOutpage = accountInfo : this.state.signupFlag ? turnaryLoginPageOutpage = signuppage : turnaryLoginPageOutpage = loginForms 
+
 
 return(turnaryLoginPageOutpage)
 }
 }
 
 
-export default login;
+export default Login;

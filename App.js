@@ -1,8 +1,9 @@
 import React from "react";
 import buyerSearchPage from './buyerSearchPage';
 import sellerPostPage from './sellerPostPage';
-import login from './login';
-import axios from 'axios';
+import Login from './login';
+import Signup from './signup';
+import Loginform from './Loginform';
 import { BrowserRouter, Route, Link } from "react-router-dom";
 
 
@@ -10,10 +11,8 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 const App = () => (
   <BrowserRouter>
     <div>
-      <h6>
-        <Link to="/logout">Logout</Link>
-      </h6>
       <ul>
+  
         <li>
           <Link to="/login">Account</Link>
         </li>
@@ -24,58 +23,15 @@ const App = () => (
           <Link to="/buy">Buy</Link>
         </li>
       </ul>
-      <Route path="/" component={signup} exact/>
-      <Route path="/login" component={login} />
-      <Route path="/logout" component={logout} />
-      <Route path="/buy" component={buyerSearchPage} />
-      <Route path="/sell" component={sellerPostPage} />
+      <Route path="/" component={Login} exact/>
+      <Route path="/login" component={Login} exact />
+      <Route path="/buy" component={buyerSearchPage} exact/>
+      <Route path="/sell" component={sellerPostPage} exact/>
     </div>
   </BrowserRouter> 
 )
 
-class signup extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-        email: "null",
-        password: "null",
-        ConfirmPassword: "nothing here"
-    }
-  }
 
- render(){
-   return(<div>
-    <form>
-        <input type="text" placeholder="Email" onChange={(event)=>{this.setState({email:event.target.value})}}/>
-        <input type="password" placeholder="Password" onChange={(event)=>{this.setState({password:event.target.value})}}/>
-        <input type="password" placeholder="Confirm Password" onChange={(event)=>{this.setState({ConfirmPassword:event.target.value})}}/>
-    </form>
-    <button onClick={(event)=>{
-      if (this.state.password === this.state.ConfirmPassword && this.state.email !== "null"){
-        alert("passwords match")
-      }else{
-        alert("passwords dont match or email is invalid")
-      }
-    }}>
-      Sign up!
-    </button>
-    </div>)
- } 
-}
-
-let logout = () =>{
-  let returnContent ;
-  if (localStorage.length > 0){
-  localStorage.removeItem("email");
-  localStorage.removeItem("token");
-    returnContent = <h1>Logged Out</h1>
-  }else{
-    returnContent = <h1>please log in</h1>
-  }
-  return (
-   returnContent
-  )
-}
 
 
 

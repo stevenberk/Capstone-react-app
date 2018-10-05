@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Login from './login';
 
 
 class sellerPostPage extends React.Component{
@@ -46,6 +47,12 @@ class sellerPostPage extends React.Component{
     }
 
     render()  {
+
+let logout=()=>{
+    localStorage.removeItem("email");
+    localStorage.removeItem("token");
+    this.setState({loginFlag: false})
+}
   
 let submitForms = <div>
     <h1> 
@@ -101,6 +108,9 @@ let submitForms = <div>
         >
         Submit
     </button> 
+<button onClick={(event)=>{logout()}}>
+    logout
+</button>
 </div>
 let alreadySubmitted = <div>
 <h1>
@@ -109,16 +119,18 @@ let alreadySubmitted = <div>
 <button onClick={(event)=>{this.setState({PostAgainButtonStatus:true})}}>
     Submit Again
 </button>
+<button onClick={(event)=>{logout()}}>
+    logout
+</button>
 </div>
 
 let pleaseLogOn =
 <div>
-    <h1>
-        Please sign in
-    </h1>
+    <Login />
 </div>
 let turnaryOutput;
-!this.state.loginFlag ? turnaryOutput = pleaseLogOn : this.state.PostAgainButtonStatus ? turnaryOutput = submitForms : turnaryOutput = alreadySubmitted
+!this.state.loginFlag ? turnaryOutput = pleaseLogOn :
+ this.state.PostAgainButtonStatus ? turnaryOutput = submitForms : turnaryOutput = alreadySubmitted
 
 return(turnaryOutput)
 

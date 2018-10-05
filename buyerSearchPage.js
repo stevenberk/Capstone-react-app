@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import Loginform from './Loginform';
+import Login from './login';
 
 let ArrayMapperRenderer = (props)=>
- <div>    
+<div>    
     <ul>
         {props.submissions.map(post =>
         <li>
@@ -15,6 +17,9 @@ let ArrayMapperRenderer = (props)=>
     )}
     </ul>
 </div>  
+
+
+
 
 class buyerSearchPage extends React.Component{
     constructor(props){
@@ -30,8 +35,8 @@ class buyerSearchPage extends React.Component{
                     notes: ""
                 }    
             ],
-            SelectedLocation: "NULL",
-            SelectedCurrency: "NULL",
+            SelectedLocation: "",
+            SelectedCurrency: "",
             loginFlag: false
     }
     axios.get('http://localhost:3006/isloggedin', {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}})
@@ -53,21 +58,29 @@ class buyerSearchPage extends React.Component{
 
     }
 
-render() {
+ 
+render() 
 
+{
+let logout=()=>{
+        localStorage.removeItem("email");
+        localStorage.removeItem("token");
+        this.setState({loginFlag: false})
+}
 let displayIfLoggedIn = <div>
+    
     <h1>
         Browse banknotes 
     </h1>
     <select value={this.state.SelectedLocation} onChange={(event)=>{this.setState({SelectedLocation:event.target.value})}} >
-       <option value="NULL">Select Location</option>
+       <option value="SelectNULL">Select Location</option>
        <option value="Atlanta">Atlanta</option>
        <option value="Boston">Boston</option>
        <option value="Los Angeles">Los Angeles</option>
     </select>
   
     <select value={this.state.SelectedCurrency} onChange={(event)=>{this.setState({SelectedCurrency:event.target.value})}} >
-        <option value="NULL">Select Currency</option>
+        <option value="SelectNULL">Select Currency</option>
         <option value="CAD">Canadian Dollar (CAD)</option>
         <option value="USD">US Dollars (USD)</option>
         <option value="GBP">GB Pounds (GBP)</option>     
@@ -75,12 +88,17 @@ let displayIfLoggedIn = <div>
     
   <ArrayMapperRenderer submissions={this.state.SearchResults.filter(entry =>(
       entry.location === this.state.SelectedLocation &&
-      entry.currency === this.state.SelectedCurrency))}/>
+      entry.currency === this.state.SelectedCurrency))
+      }/>
+
+    <button onClick={(event)=>{logout()}}>
+        logout
+    </button>
 </div>
 
 let pleaseLogIn = 
 <div>
-    <h1>Please Log In</h1>
+    <Login />
 </div>
 
 let turnaryOutputDisplay;
