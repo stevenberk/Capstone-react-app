@@ -1,13 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 
-let ArrayMapperRenderer = (props)=> <div>    
+let ArrayMapperRenderer = (props)=>
+ <div>    
     <ul>
         {props.submissions.map(post =>
         <li>
-            <p>{post.currency}</p> 
             <p>{post.location}</p>
-            <p>Amount: {post.amount}</p> 
+            <p>Amount: {post.amount} {post.currency}</p> 
             <p>Value in USD at time of submission: {post.valueInUSD}</p>
             <p>Seller Email: {post.sellerEmail}</p>
             <p>Notes: {post.notes}</p>  
@@ -15,6 +15,8 @@ let ArrayMapperRenderer = (props)=> <div>
     )}
     </ul>
 </div>  
+
+
 
 class buyerSearchPage extends React.Component{
     constructor(props){
@@ -31,17 +33,33 @@ class buyerSearchPage extends React.Component{
                 }    
             ],
             SelectedLocation: "NULL",
-            SelectedCurrency: "NULL"
+            SelectedCurrency: "NULL",
     }
-    axios.get('http://localhost:3006/submissions')
+    axios.get('http://localhost:3006/submissions', {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}})
         .then(response => {
             this.setState({
             SearchResults : response["data"]
             })
         })  
         .catch(function (error) {
-            console.log(error);
+           
          });
+
+    // axios.get('http://localhost:3006/tester')
+    // .then(response => {
+    //     console.log(response.data)
+    // })
+    // .catch(function (error) {
+    //     console.log(error);
+    //  });
+
+    //  axios.post('http://localhost:3006/api/posts', } )
+    //  .then(response => {
+    //      console.log(response, "yes")
+    //  })
+    //  .catch(function (error) {
+    //      console.log("error");
+    //   });
     }
     
 
@@ -68,7 +86,8 @@ return (
       entry.location === this.state.SelectedLocation &&
       entry.currency === this.state.SelectedCurrency)
   )}/>
-</div>)
+</div>
+)
    
 }
 }

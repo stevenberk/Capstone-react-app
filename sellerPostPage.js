@@ -61,9 +61,7 @@ let submitForms = <div>
     </form> 
 
     <button onClick={(event)=>{
-        if(localStorage.length === 0){
-            alert('Please log in to post a currency')
-        }else{
+        console.log(this.state.sellerEmail);
         let submissionContentArray = [
             this.state.SelectedLocation, 
             this.state.SelectedCurrency, 
@@ -72,17 +70,23 @@ let submitForms = <div>
             this.state.SellerEmail,
             this.state.Notes]; 
             this.setState({SubmittedPosts:this.state.SubmittedPosts.concat([submissionContentArray])}); 
-            this.setState({PostAgainButtonStatus:false})
+            
             // console.log(submissionContentArray)
-        axios.post('http://localhost:3006/submissions', {
-            location: submissionContentArray[0],
-            currency: submissionContentArray[1],
+        axios.post('http://localhost:3006/submissions',
+            {
             amount: submissionContentArray[2],
-            valueInUSD: submissionContentArray[3],
+            currency: submissionContentArray[1],
+            location: submissionContentArray[0],
+            notes: submissionContentArray[5],
             sellerEmail: submissionContentArray[4],
-            notes: submissionContentArray[5]
-        })
-        }
+            valueInUSD: submissionContentArray[3]
+            },
+            {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}} )
+            .then(()=>this.setState({PostAgainButtonStatus:false}))
+            .catch((event)=> {
+                alert('Invalid Login')
+            }) 
+        
         }}
         >
         Submit
