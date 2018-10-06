@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import Youraccount from "./Youraccount";
+
 
 
 class Signup extends React.Component{
@@ -9,12 +11,14 @@ class Signup extends React.Component{
       this.state = {
           email: "null",
           password: "null",
-          ConfirmPassword: "nothing here"
+          ConfirmPassword: "nothing here",
+          loginFlag: false
       }
     }
   
    render(){
-     return(
+     
+let SignupForms =        
 <div>
     <form>
         <label>Create an Account!</label>
@@ -24,14 +28,40 @@ class Signup extends React.Component{
     </form>
     <button onClick={(event)=>{
         if (this.state.password === this.state.ConfirmPassword && this.state.email !== "null"){
-            alert("passwords match")
+
+            axios.post('http://localhost:3006/addnewuser',
+            {
+               email: this.state.email,
+               password: this.state.password
+            }
+            ).then(
+                axios.post('http://localhost:3006/api/login', {
+                email: this.state.email,
+                password: this.state.password
+            }).then((response)=> {
+                localStorage.setItem("token", response.data.token);
+                localStorage.setItem("email", this.state.email);
+                this.setState({loginFlag : true});
+               
+            }).then(this.setState({loginFlag:true})))
         }else{
-            alert("passwords dont match or email is invalid")
+            
         }
     }}>
         Sign up!
     </button>
-</div>)
+</div>
+let GoToAccountPage =
+<div>
+    <Youraccount />
+</div>
+
+let RenderToPage;
+
+this.state.loginFlag ? RenderToPage = GoToAccountPage : RenderToPage = SignupForms
+
+
+return(RenderToPage)
    } 
 }
 

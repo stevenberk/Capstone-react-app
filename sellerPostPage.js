@@ -18,7 +18,7 @@ class sellerPostPage extends React.Component{
             SubmittedPosts: [],
             SellerEmail: localStorage.getItem("email"),
             PostAgainButtonStatus: true,
-            loginFlag: false,
+            loginFlag: false
         }
  
         let getExchangeRates = () =>{
@@ -40,9 +40,10 @@ class sellerPostPage extends React.Component{
                 getExchangeRates();
                 ;
             }else{
-                console.log(response.data)
+                // console.log(response.data)
             }
-        }).catch(console.log("user is not logged in"))
+        })
+        // .catch(console.log("user is not logged in"))
 
     }
 
@@ -127,6 +128,7 @@ let alreadySubmitted = <div>
 let pleaseLogOn =
 <div>
     <Login />
+    
 </div>
 let turnaryOutput;
 !this.state.loginFlag ? turnaryOutput = pleaseLogOn :

@@ -2,8 +2,6 @@ import React from "react";
 import buyerSearchPage from './buyerSearchPage';
 import sellerPostPage from './sellerPostPage';
 import Login from './login';
-import Signup from './signup';
-import Loginform from './Loginform';
 import { BrowserRouter, Route, Link } from "react-router-dom";
 
 
@@ -24,9 +22,9 @@ const App = () => (
         </li>
       </ul>
       <Route path="/" component={Login} exact/>
-      <Route path="/login" component={Login} exact />
-      <Route path="/buy" component={buyerSearchPage} exact/>
-      <Route path="/sell" component={sellerPostPage} exact/>
+      <Route path="/login" component={Login}  />
+      <Route path="/buy" component={buyerSearchPage} />
+      <Route path="/sell" component={sellerPostPage} />
     </div>
   </BrowserRouter> 
 )

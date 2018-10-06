@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Loginform from './Loginform';
+
 import Login from './login';
 
 let ArrayMapperRenderer = (props)=>
@@ -31,12 +31,12 @@ class buyerSearchPage extends React.Component{
                     currency: "NULL",
                     amount: 0,
                     valueInUSD: 0,
-                    sellerEmail: "",
-                    notes: ""
+                    sellerEmail: "n",
+                    notes: "n"
                 }    
             ],
-            SelectedLocation: "",
-            SelectedCurrency: "",
+            SelectedLocation: "n",
+            SelectedCurrency: "n",
             loginFlag: false
     }
     axios.get('http://localhost:3006/isloggedin', {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}})
@@ -50,9 +50,10 @@ class buyerSearchPage extends React.Component{
                         })
                     }) 
                 }else{
-                console.log(response.data)
+                // console.log(response.data)
                     }
-                }).catch(console.log("user is not logged in"))
+                })
+                // .catch(console.log("user is not logged in"))
      
         
 
@@ -98,7 +99,9 @@ let displayIfLoggedIn = <div>
 
 let pleaseLogIn = 
 <div>
+
     <Login />
+    
 </div>
 
 let turnaryOutputDisplay;
