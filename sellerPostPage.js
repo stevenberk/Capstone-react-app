@@ -17,6 +17,8 @@ class sellerPostPage extends React.Component{
             Notes: "",
             SubmittedPosts: [],
             SellerEmail: localStorage.getItem("email"),
+            sellername: localStorage.getItem("firstname"),
+            sellerid: localStorage.getItem("userid"),
             PostAgainButtonStatus: true,
             loginFlag: false
         }
@@ -87,17 +89,22 @@ let submitForms = <div>
             parseFloat(this.state.Amount), 
             parseFloat(((this.state.Amount * (this.state.ExchangeRates["rates"][this.state.SelectedCurrency])).toFixed(2))), 
             this.state.SellerEmail,
-            this.state.Notes]; 
+            this.state.Notes,
+            this.state.sellername,
+            this.state.sellerid]; 
             this.setState({SubmittedPosts:this.state.SubmittedPosts.concat([submissionContentArray])}); 
           
         axios.post('http://localhost:3006/submissions',
             {
+            postid: 3,
             amount: submissionContentArray[2],
             currency: submissionContentArray[1],
             location: submissionContentArray[0],
             notes: submissionContentArray[5],
             sellerEmail: submissionContentArray[4],
-            valueInUSD: submissionContentArray[3]
+            valueInUSD: submissionContentArray[3],
+            sellername: submissionContentArray[6],
+            sellerid: submissionContentArray[7]
             },
             {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}} )
             .then(()=>this.setState({PostAgainButtonStatus:false}))

@@ -12,6 +12,8 @@ class Signup extends React.Component{
           email: "null",
           password: "null",
           ConfirmPassword: "nothing here",
+          firstname: "",
+          lastname: "lastname",
           loginFlag: false
       }
     }
@@ -22,6 +24,7 @@ let SignupForms =
 <div>
     <form>
         <label>Create an Account!</label>
+        <input type="text" placeholder="First Name" onChange={(event)=>{this.setState({firstname:event.target.value})}}/>
         <input type="text" placeholder="Email" onChange={(event)=>{this.setState({email:event.target.value})}}/>
         <input type="password" placeholder="Password" onChange={(event)=>{this.setState({password:event.target.value})}}/>
         <input type="password" placeholder="Confirm Password" onChange={(event)=>{this.setState({ConfirmPassword:event.target.value})}}/>
@@ -32,7 +35,9 @@ let SignupForms =
             axios.post('http://localhost:3006/addnewuser',
             {
                email: this.state.email,
-               password: this.state.password
+               password: this.state.password,
+               firstname: this.state.firstname,
+               lastname: this.state.lastname
             }
             ).then(
                 axios.post('http://localhost:3006/api/login', {

@@ -16,11 +16,14 @@ class Login extends React.Component{
 
             SearchResults : [
                 {
+                    postid: 0,
                     location: "NULL",
                     currency: "NULL",
                     amount: 0,
                     valueInUSD: 0,
                     sellerEmail: "",
+                    sellername: 'Steven',
+                    sellerid: '1' ,
                     notes: ""
                 }    
             ],
@@ -88,6 +91,8 @@ let loginForms =
         }).then((response)=> {
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("email", this.state.email);
+            localStorage.setItem("firstname", response.data.firstname);
+            localStorage.setItem("userid", response.data.userid)
             this.setState({loginFlag : true});
            
         })
