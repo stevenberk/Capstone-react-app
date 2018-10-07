@@ -45,7 +45,7 @@ let SignupForms =
                
             }).then(this.setState({loginFlag:true})))
         }else{
-            
+            alert("invalid signup credentials")
         }
     }}>
         Sign up!
