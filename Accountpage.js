@@ -43,7 +43,6 @@ componentDidMount() {
         email:localStorage.getItem("email")
     })
     .then((response)=> this.setState({SearchResults: response.data, loadedContent:true})))
-
 }
 
 render(){
@@ -54,17 +53,20 @@ render(){
        {props.submissions.map(post =>
         <li>
           <p>Your Location: {post.location}</p>
-          <p>Your Currency for sale:{post.amount} {post.currency}</p> 
+          <p>Your Currency for sale: {post.amount} {post.currency}</p> 
           <p>Value in USD at time of submission: {post.valueinusd}</p>
           <p>Your Email: {post.selleremail}</p>
           <p>Notes: {post.notes}</p>
           <button onClick={(event)=>{
              axios.post('http://localhost:3006/deletepost',  
-               {id:post.postid})
-               .then(axios.post('http://localhost:3006/seedaccountpage',
-               {email:localStorage.getItem("email")}
-              ).then((response)=> this.setState({SearchResults:response.data})))
-           window.location.reload()
+               {id:post.postid}
+              )
+               .then(()=>{
+                 axios.post('http://localhost:3006/seedaccountpage',
+               {
+                 email:localStorage.getItem("email")
+                }
+              ).then((response)=> this.setState({SearchResults:response.data}))})
           }}>Delete</button>  
       </li>  
       )}
