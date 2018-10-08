@@ -15,8 +15,8 @@ class Login extends React.Component{
                     location: "",
                     currency: "",
                     amount: 0,
-                    valueInUSD: 0,
-                    sellerEmail: "",
+                    valueinusd: 0,
+                    selleremail: "",
                     sellername: '',
                     sellerid: '1' ,
                     notes: ""
@@ -50,8 +50,8 @@ let ArrayMapperRenderer = (props)=>
            <li>
                <p>Your Location: {post.location}</p>
                <p>Your Currency for sale:{post.amount} {post.currency}</p> 
-               <p>Value in USD at time of submission: {post.valueInUSD}</p>
-               <p>Your Email: {post.sellerEmail}</p>
+               <p>Value in USD at time of submission: {post.valueinusd}</p>
+               <p>Your Email: {post.selleremail}</p>
                <p>Notes: {post.notes}</p>
                <button onClick={(event)=>{
                    
