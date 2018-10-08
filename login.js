@@ -2,9 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Signup from "./signup"
  
-
-
-
 class Login extends React.Component{
     constructor(props){
         super(props);
@@ -25,14 +22,19 @@ class Login extends React.Component{
             email: "null",
             password: "password",
             loginFlag: false,
-            signupFlag: false
+            signupFlag: false,
+            stoploopingFlag: true
         }
         
         axios.post('http://localhost:3006/seedaccountpage',
-            {email:localStorage.getItem("email")}
-            ).then((response)=> this.setState({SearchResults: response.data}))
+        {
+            email:localStorage.getItem("email")
+        }
+    ).then((response)=> this.setState({SearchResults: response.data}))
         
-        axios.get('http://localhost:3006/isloggedin', {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}})
+        axios.get('http://localhost:3006/isloggedin', 
+            {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}
+        })
         .then(response => {
             if (response.data === "yes" && this.state.loginFlag === false){
                 this.setState({loginFlag : true})
@@ -54,7 +56,10 @@ let ArrayMapperRenderer = (props)=>
                <p>Your Email: {post.selleremail}</p>
                <p>Notes: {post.notes}</p>
                <button onClick={(event)=>{
-                   
+                  axios.post('http://localhost:3006/deletepost',  
+                    {id:post.postid}).then(axios.post('http://localhost:3006/seedaccountpage',
+                    {email:localStorage.getItem("email")}
+                ).then((response)=> this.setState({SearchResults:response.data})))
                }}>Delete</button>  
            </li> 
            
@@ -80,10 +85,12 @@ let loginForms =
         <input type="password" placeholder="Password" onChange={(event)=>{this.setState({password:event.target.value})}}/>
     </form>
     <button onClick={(event)=>{
-        axios.post('http://localhost:3006/api/login', {
+
+
+        axios.post('http://localhost:3006/querylogin', {
             email: this.state.email,
             password: this.state.password
-        }).then((response)=> {
+        }).then((response)=> {console.log(response.data);
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("email", this.state.email);
             localStorage.setItem("firstname", response.data.firstname);
@@ -116,16 +123,14 @@ let accountInfo =
 </div>    
 
 let turnaryLoginPageOutpage;
-this.state.loginFlag ? turnaryLoginPageOutpage = accountInfo : this.state.signupFlag ? turnaryLoginPageOutpage = signuppage : turnaryLoginPageOutpage = loginForms 
 
-
-
-
-
+this.state.loginFlag  ?  
+turnaryLoginPageOutpage = accountInfo
+: this.state.signupFlag ? turnaryLoginPageOutpage = signuppage 
+: turnaryLoginPageOutpage = loginForms 
 
 return(turnaryLoginPageOutpage)
 }
 }
-
 
 export default Login;

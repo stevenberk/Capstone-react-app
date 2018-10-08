@@ -14,8 +14,9 @@ class sellerPostPage extends React.Component{
             SelectedLocation: "NULL",
             SelectedCurrency: "NULL",
             Amount: 0,
-            Notes: "",
+            Notes: " ",
             SubmittedPosts: [],
+            // submissionContentArray = [],
             SellerEmail: localStorage.getItem("email"),
             sellername: localStorage.getItem("firstname"),
             sellerid: localStorage.getItem("userid"),
@@ -95,24 +96,23 @@ let submitForms = <div>
             this.state.sellername,
             this.state.sellerid]; 
             this.setState({SubmittedPosts:this.state.SubmittedPosts.concat([submissionContentArray])}); 
-          
         axios.post('http://localhost:3006/sellersubmissions',
             {
-            postid: 3,
             amount: submissionContentArray[2],
             currency: submissionContentArray[1],
             location: submissionContentArray[0],
             notes: submissionContentArray[5],
-            sellerEmail: submissionContentArray[4],
-            valueInUSD: submissionContentArray[3],
+            selleremail: submissionContentArray[4],
+            valueinusd: submissionContentArray[3],
             sellername: submissionContentArray[6],
             sellerid: submissionContentArray[7]
             }
             // ,{headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}} 
         )
-            .then(()=>this.setState({PostAgainButtonStatus:false}))
+            .then(()=>this.setState({PostAgainButtonStatus:false, Notes:""}))
             .catch((event)=> {
                 alert('sorry')
+
             }) 
         
         }}
@@ -140,8 +140,7 @@ let pleaseLogOn =
     <Login />
 </div>
 let turnaryOutput;
-!this.state.loginFlag ? turnaryOutput = pleaseLogOn :
- this.state.PostAgainButtonStatus ? turnaryOutput = submitForms : turnaryOutput = alreadySubmitted
+!this.state.loginFlag ? turnaryOutput = pleaseLogOn : this.state.PostAgainButtonStatus ? turnaryOutput = submitForms : turnaryOutput = alreadySubmitted
 
 return(turnaryOutput)
 
