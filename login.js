@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Signup from "./signup"
+import Accountpage from "./Accountpage";
  
 class Login extends React.Component{
     constructor(props){
@@ -23,10 +24,11 @@ class Login extends React.Component{
             password: "password",
             loginFlag: false,
             signupFlag: false,
-            stoploopingFlag: true
+          
         }
-        
-        axios.post('http://localhost:3006/seedaccountpage',
+//     }
+// componentDidMount() {
+     axios.post('http://localhost:3006/seedaccountpage',
         {
             email:localStorage.getItem("email")
         }
@@ -41,42 +43,12 @@ class Login extends React.Component{
             }else{
             }
         })
-     
+
     }
+    
+    
+
 render(){
-let ArrayMapperRenderer = (props)=>
-    <div>    
-        <h1>Your submission:</h1>
-       <ul>
-           {props.submissions.map(post =>
-           <li>
-               <p>Your Location: {post.location}</p>
-               <p>Your Currency for sale:{post.amount} {post.currency}</p> 
-               <p>Value in USD at time of submission: {post.valueinusd}</p>
-               <p>Your Email: {post.selleremail}</p>
-               <p>Notes: {post.notes}</p>
-               <button onClick={(event)=>{
-                  axios.post('http://localhost:3006/deletepost',  
-                    {id:post.postid}).then(axios.post('http://localhost:3006/seedaccountpage',
-                    {email:localStorage.getItem("email")}
-                ).then((response)=> this.setState({SearchResults:response.data})))
-               }}>Delete</button>  
-           </li> 
-           
-       )}
-       </ul>
-       <button onClick={(event)=>{
-           localStorage.removeItem("email");
-           localStorage.removeItem("token");
-           localStorage.removeItem("firstname");
-           localStorage.removeItem("userid");
-           this.setState({loginFlag:false})
-       }}>
-       Log Out
-       </button>
-    </div>  
-
-
 let loginForms = 
 <div>
     <form>
@@ -119,17 +91,16 @@ let signuppage =
 
 let accountInfo = 
 <div>
-<ArrayMapperRenderer submissions={this.state.SearchResults}/>
+    <Accountpage />
+   
 </div>    
 
-let turnaryLoginPageOutpage;
 
-this.state.loginFlag  ?  
-turnaryLoginPageOutpage = accountInfo
-: this.state.signupFlag ? turnaryLoginPageOutpage = signuppage 
-: turnaryLoginPageOutpage = loginForms 
-
-return(turnaryLoginPageOutpage)
+return(this.state.loginFlag  ?  
+    accountInfo
+   : this.state.signupFlag ? signuppage 
+   : loginForms  
+   )
 }
 }
 
