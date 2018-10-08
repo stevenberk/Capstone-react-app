@@ -10,8 +10,8 @@ let ArrayMapperRenderer = (props)=>
         <li>
             <p>{post.location}</p>
             <p>{post.amount} {post.currency}</p> 
-            <p>Value in USD at time of submission: {post.valueInUSD}</p>
-            <p>Seller Email: {post.sellerEmail}</p>
+            <p>Value in USD at time of submission: {post.valueinusd}</p>
+            <p>Seller Email: {post.selleremail}</p>
             <p>Notes: {post.notes}</p>  
         </li> 
     )}
@@ -27,11 +27,14 @@ class buyerSearchPage extends React.Component{
         this.state = { 
             SearchResults : [
                 {
+                    postid: 0,
                     location: "NULL",
                     currency: "NULL",
                     amount: 0,
-                    valueInUSD: 0,
-                    sellerEmail: "n",
+                    valueinusd: 0,
+                    sellername: "null",
+                    sellerid: 0,
+                    selleremail: "n",
                     notes: "n"
                 }    
             ],
@@ -43,20 +46,11 @@ class buyerSearchPage extends React.Component{
         .then(response => {
             if (response.data === "yes" && this.state.loginFlag === false){
                 this.setState({loginFlag : true});
-                    axios.get('http://localhost:3006/submissions', {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}})
-                    .then(response => {
-                    this.setState({
-                        SearchResults : response["data"]
-                        })
-                    }) 
+                   
                 }else{
-                // console.log(response.data)
+                
                     }
                 })
-                // .catch(console.log("user is not logged in"))
-     
-        
-
     }
 
  
@@ -66,6 +60,8 @@ render()
 let logout=()=>{
         localStorage.removeItem("email");
         localStorage.removeItem("token");
+        localStorage.removeItem("firstname");
+        localStorage.removeItem("userid");
         this.setState({loginFlag: false})
 }
 let displayIfLoggedIn = <div>
@@ -86,6 +82,19 @@ let displayIfLoggedIn = <div>
         <option value="USD">US Dollars (USD)</option>
         <option value="GBP">GB Pounds (GBP)</option>     
     </select>
+
+    <button onClick={(event)=>{
+        //this does a PostgreSQL SELECT
+        axios.post("http://localhost:3006/querysubmissions", {
+            location: this.state.SelectedLocation,
+            currency: this.state.SelectedCurrency
+        }
+    ).then((response)=> this.setState({
+        SearchResults: response.data
+    }));
+    }}
+    
+    >Search</button>
     
   <ArrayMapperRenderer submissions={this.state.SearchResults.filter(entry =>(
       entry.location === this.state.SelectedLocation &&

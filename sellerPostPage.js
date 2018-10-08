@@ -42,10 +42,10 @@ class sellerPostPage extends React.Component{
                 getExchangeRates();
                 ;
             }else{
-                // console.log(response.data)
+               
             }
         })
-        // .catch(console.log("user is not logged in"))
+   
 
     }
 
@@ -54,6 +54,8 @@ class sellerPostPage extends React.Component{
 let logout=()=>{
     localStorage.removeItem("email");
     localStorage.removeItem("token");
+    localStorage.removeItem("firstname");
+    localStorage.removeItem("userid");
     this.setState({loginFlag: false})
 }
   
@@ -94,7 +96,7 @@ let submitForms = <div>
             this.state.sellerid]; 
             this.setState({SubmittedPosts:this.state.SubmittedPosts.concat([submissionContentArray])}); 
           
-        axios.post('http://localhost:3006/submissions',
+        axios.post('http://localhost:3006/sellersubmissions',
             {
             postid: 3,
             amount: submissionContentArray[2],
@@ -105,11 +107,12 @@ let submitForms = <div>
             valueInUSD: submissionContentArray[3],
             sellername: submissionContentArray[6],
             sellerid: submissionContentArray[7]
-            },
-            {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}} )
+            }
+            // ,{headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}} 
+        )
             .then(()=>this.setState({PostAgainButtonStatus:false}))
             .catch((event)=> {
-                alert('Invalid Login')
+                alert('sorry')
             }) 
         
         }}
@@ -135,7 +138,6 @@ let alreadySubmitted = <div>
 let pleaseLogOn =
 <div>
     <Login />
-    
 </div>
 let turnaryOutput;
 !this.state.loginFlag ? turnaryOutput = pleaseLogOn :
