@@ -17,7 +17,7 @@ class Login extends React.Component{
                     selleremail: "",
                     sellername: '',
                     sellerid: '1' ,
-                    notes: ""
+                    // notes: ""
                 }    
             ],
             email: "null",
@@ -40,7 +40,6 @@ class Login extends React.Component{
         .then(response => {
             if (response.data === "yes" && this.state.loginFlag === false){
                 this.setState({loginFlag : true})
-            }else{
             }
         })
 

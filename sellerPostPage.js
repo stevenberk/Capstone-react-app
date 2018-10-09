@@ -3,7 +3,7 @@ import axios from 'axios';
 import Login from './login';
 
 
-class sellerPostPage extends React.Component{
+class SellerPostPage extends React.Component{
     constructor(props){
         super(props);
         this.state = { 
@@ -14,7 +14,7 @@ class sellerPostPage extends React.Component{
             SelectedLocation: "NULL",
             SelectedCurrency: "NULL",
             Amount: 0,
-            Notes: " ",
+            // Notes: " ",
             SubmittedPosts: [],
             // submissionContentArray = [],
             SellerEmail: localStorage.getItem("email"),
@@ -24,33 +24,43 @@ class sellerPostPage extends React.Component{
             loginFlag: false
         }
  
-        let getExchangeRates = () =>{
-            return fetch('')
-            .then(res => res.json())
-            .then(rates => {
-                this.setState({
-                    ExchangeRates : rates
-                    })
-                }
-            )
-        }
         
 
         axios.get('http://localhost:3006/isloggedin', {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}})
         .then(response => {
             if (response.data === "yes" && this.state.loginFlag === false){
                 this.setState({loginFlag : true})
-                getExchangeRates();
+                
                 ;
-            }else{
-               
             }
         })
    
 
     }
 
+
+    getExchangeRates(){
+        return fetch(`${this.state.SelectedCurrency}`)
+        .then(res => res.json())
+        .then(rates => {
+            console.log(rates)
+            this.setState({
+                ExchangeRates : rates
+                })
+            }
+        )
+    }
+
+    componentDidUpdate(prevprops, prevstate){
+        if (this.state.SelectedCurrency !== prevstate.SelectedCurrency){
+            this.getExchangeRates()
+        }
+        
+    }
+
     render()  {
+
+        
 
 let logout=()=>{
     localStorage.removeItem("email");
@@ -59,7 +69,7 @@ let logout=()=>{
     localStorage.removeItem("userid");
     this.setState({loginFlag: false})
 }
-  
+
 let submitForms = <div>
     <h1> 
         Post banknotes to sell
@@ -68,29 +78,41 @@ let submitForms = <div>
         <option value="NULL">Select Location</option>
         <option value="Atlanta">Atlanta</option>
         <option value="Boston">Boston</option>
-        <option value="Los Angeles">Los Angeles</option>  
+        <option value="Chicago">Chicago</option>
+        <option value="Dallas">Dallas</option>
+        <option value="Bay Area">Bay Area</option>
+        <option value="New York">New York</option>
+        <option value="Seattle">Seattle</option>
+        <option value="Los Angeles">Los Angeles</option>
+        <option value="Miami">Miami</option>  
     </select>
     <select value={this.state.SelectedCurrency} onChange={(event)=>{this.setState({SelectedCurrency:event.target.value})}} >
         <option value="NULL">Select Currency</option>
         <option value="CAD">Canadian Dollars (CAD)</option>
-        <option value="USD">US Dollars (USD)</option>
-        <option value="GBP">GB Pounds (GBP)</option>    
+        <option value="EUR">Euros (EUR)</option>
+        <option value="GBP">GB Pounds (GBP)</option>
+        <option value="JPY">Japanese Yen (JPY)</option> 
+        <option value="MXN">Mexican Peso (MXN)</option>
+        <option value="CUC">Cuban Convertible Peso (CUC)</option>
+        <option value="AUD">Australian Dollar (AUD)</option> 
+        <option value="THB">Thai Baht (THB)</option>
+        <option value="CHF">Swiss Franc (CHF)</option>    
     </select>
       
     <form value={this.state.Amount} onChange={(event)=>{this.setState({Amount:event.target.value})}}>
         <input type="number" min="0" placeholder="Enter Amount" />
     </form>     
 
-    <form value={this.state.Notes} onChange={(event)=>{this.setState({Notes:event.target.value})}}>
+    {/* <form value={this.state.Notes} onChange={(event)=>{this.setState({Notes:event.target.value})}}>
         <input type="text"  placeholder="Notes" />
-    </form> 
+    </form>  */}
 
     <button onClick={(event)=>{
         let submissionContentArray = [
             this.state.SelectedLocation, 
             this.state.SelectedCurrency, 
             parseFloat(this.state.Amount), 
-            parseFloat(((this.state.Amount * (this.state.ExchangeRates["rates"][this.state.SelectedCurrency])).toFixed(2))), 
+            parseFloat(((this.state.Amount * (this.state.ExchangeRates.rates.USD)).toFixed(2))), 
             this.state.SellerEmail,
             this.state.Notes,
             this.state.sellername,
@@ -101,7 +123,7 @@ let submitForms = <div>
             amount: submissionContentArray[2],
             currency: submissionContentArray[1],
             location: submissionContentArray[0],
-            notes: submissionContentArray[5],
+            // notes: submissionContentArray[5],
             selleremail: submissionContentArray[4],
             valueinusd: submissionContentArray[3],
             sellername: submissionContentArray[6],
@@ -147,4 +169,4 @@ return(turnaryOutput)
 }
 };
     
-export default sellerPostPage;
+export default SellerPostPage;

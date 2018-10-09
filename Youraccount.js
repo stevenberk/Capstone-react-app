@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import Login from './login';
 
 
 class Youraccount extends React.Component{
@@ -14,7 +14,7 @@ class Youraccount extends React.Component{
                 amount: 0,
                 valueInUSD: 0,
                 sellerEmail: "",
-                notes: ""
+                // notes: ""
             },
               
         ],
@@ -32,7 +32,8 @@ class Youraccount extends React.Component{
 
         return(
             <div>
-            <h1>Welcome, thanks for signing up!</h1>
+                <h1>Welcome, thanks for signing up!</h1>
+                <Login />
             </div>
         )
     }

@@ -10,9 +10,9 @@ let ArrayMapperRenderer = (props)=>
         <li>
             <p>{post.location}</p>
             <p>{post.amount} {post.currency}</p> 
-            <p>Value in USD at time of submission: {post.valueinusd}</p>
+            <p>Value in USD at time of submission: ${post.valueinusd}</p>
             <p>Seller Email: {post.selleremail}</p>
-            <p>Notes: {post.notes}</p>  
+            {/* <p>Notes: {post.notes}</p>   */}
         </li> 
     )}
     </ul>
@@ -73,14 +73,25 @@ let displayIfLoggedIn = <div>
        <option value="SelectNULL">Select Location</option>
        <option value="Atlanta">Atlanta</option>
        <option value="Boston">Boston</option>
+       <option value="Chicago">Chicago</option>
+       <option value="Dallas">Dallas</option>
+       <option value="Bay Area">Bay Area</option>
+       <option value="New York">New York</option>
+       <option value="Seattle">Seattle</option>
        <option value="Los Angeles">Los Angeles</option>
+       <option value="Miami">Miami</option> 
     </select>
-  
     <select value={this.state.SelectedCurrency} onChange={(event)=>{this.setState({SelectedCurrency:event.target.value})}} >
         <option value="SelectNULL">Select Currency</option>
         <option value="CAD">Canadian Dollar (CAD)</option>
-        <option value="USD">US Dollars (USD)</option>
-        <option value="GBP">GB Pounds (GBP)</option>     
+        <option value="EUR">Euros (EUR)</option>
+        <option value="GBP">GB Pounds (GBP)</option>
+        <option value="JPY">Japanese Yen (JPY)</option>
+        <option value="MXN">Mexican Peso (MXN)</option>
+        <option value="CUC">Cuban Convertible Peso (CUC)</option>
+        <option value="AUD">Australian Dollar (AUD)</option>
+        <option value="THB">Thai Baht (THB)</option>
+        <option value="CHF">Swiss Franc (CHF)</option>     
     </select>
 
     <button onClick={(event)=>{
