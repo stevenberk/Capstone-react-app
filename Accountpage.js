@@ -45,17 +45,17 @@ componentDidMount() {
 
 render(){
   let ArrayMapperRenderer = (props)=>
-  <div>    
+    <div >
     <h1>Your submissions:</h1>
-    <ul>
+    <div className="flexrow "> 
        {props.submissions.map(post =>
-        <li>
-          <p>Your Location: {post.location}</p>
-          <p>Your Currency for sale: {post.amount} {post.currency}</p> 
-          <p>Value in USD at time of submission: ${post.valueinusd}</p>
+        <div className="card spaceAlittle">
+          <h5>{post.amount} {post.currency}</h5> 
+          <p>Value in USD: ${post.valueinusd}</p>
           <p>Your Email: {post.selleremail}</p>
+          <p>Your Location: {post.location}</p>
           {/* <p>Notes: {post.notes}</p> */}
-          <button onClick={(event)=>{
+          <button className="btn btn-secondary btn-sm" onClick={(event)=>{
              axios.post('http://localhost:3006/deletepost',  
                {id:post.postid}
               )
@@ -66,10 +66,10 @@ render(){
                 }
               ).then((response)=> this.setState({SearchResults:response.data}))})
           }}>Delete</button>  
-      </li>  
+      </div>  
       )}
-    </ul>
-    <button onClick={(event)=>{
+    </div>
+    <button className="btn btn-link" onClick={(event)=>{
        localStorage.removeItem("email");
        localStorage.removeItem("token");
        localStorage.removeItem("firstname");
@@ -78,7 +78,8 @@ render(){
       }}>
       Log Out
     </button>
-  </div>
+  
+</div>
   
 
 let UserAccountPage =

@@ -14,7 +14,7 @@ class SellerPostPage extends React.Component{
             SelectedLocation: "NULL",
             SelectedCurrency: "NULL",
             Amount: 0,
-            // Notes: " ",
+            Notes: " ",
             SubmittedPosts: [],
             // submissionContentArray = [],
             SellerEmail: localStorage.getItem("email"),
@@ -107,7 +107,7 @@ let submitForms = <div>
         <input type="text"  placeholder="Notes" />
     </form>  */}
 
-    <button onClick={(event)=>{
+    <button className="btn btn-primary" onClick={(event)=>{
         let submissionContentArray = [
             this.state.SelectedLocation, 
             this.state.SelectedCurrency, 
@@ -118,6 +118,7 @@ let submitForms = <div>
             this.state.sellername,
             this.state.sellerid]; 
             this.setState({SubmittedPosts:this.state.SubmittedPosts.concat([submissionContentArray])}); 
+            
         axios.post('http://localhost:3006/sellersubmissions',
             {
             amount: submissionContentArray[2],
@@ -141,20 +142,25 @@ let submitForms = <div>
         >
         Submit
     </button> 
-<button onClick={(event)=>{logout()}}>
+<div>
+<button className="btn btn-link" onClick={(event)=>{logout()}}>
     logout
 </button>
 </div>
-let alreadySubmitted = <div>
+</div>
+let alreadySubmitted = 
+<div>
 <h1>
     Submitted!
 </h1>
-<button onClick={(event)=>{this.setState({PostAgainButtonStatus:true})}}>
+<button className="btn btn-primary" onClick={(event)=>{this.setState({PostAgainButtonStatus:true})}}>
     Submit Again
 </button>
-<button onClick={(event)=>{logout()}}>
+<div>
+<button className="btn btn-link" onClick={(event)=>{logout()}}>
     logout
 </button>
+</div>
 </div>
 
 let pleaseLogOn =

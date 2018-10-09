@@ -9,18 +9,17 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 const App = () => (
   <BrowserRouter>
     <div>
-      <ul>
-  
-        <li>
+      <div  >
+        <div>
           <Link to="/login">Account</Link>
-        </li>
-        <li>
+        </div>
+        <div>
           <Link to="/sell">Sell</Link>
-        </li>
-        <li>
+        </div>
+        <div>
           <Link to="/buy">Buy</Link>
-        </li>
-      </ul>
+        </div>
+      </div>
       <Route path="/" component={Login} exact/>
       <Route path="/login" component={Login}  />
       <Route path="/buy" component={buyerSearchPage} />

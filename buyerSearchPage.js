@@ -5,17 +5,17 @@ import Login from './login';
 
 let ArrayMapperRenderer = (props)=>
 <div>    
-    <ul>
+    <div className="flexrow ">
         {props.submissions.map(post =>
-        <li>
-            <p>{post.location}</p>
-            <p>{post.amount} {post.currency}</p> 
-            <p>Value in USD at time of submission: ${post.valueinusd}</p>
+        <div className="card spaceAlittle">
+            <h5>{post.amount} {post.currency}</h5> 
+            <p>Value in USD: ${post.valueinusd}</p>
             <p>Seller Email: {post.selleremail}</p>
+            <p>{post.location}</p>
             {/* <p>Notes: {post.notes}</p>   */}
-        </li> 
+        </div> 
     )}
-    </ul>
+    </div>
 </div>  
 
 
@@ -38,8 +38,8 @@ class buyerSearchPage extends React.Component{
                     notes: "n"
                 }    
             ],
-            SelectedLocation: "n",
-            SelectedCurrency: "n",
+            SelectedLocation: "null",
+            SelectedCurrency: "null",
             loginFlag: false
     }
     axios.get('http://localhost:3006/isloggedin', {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}})
@@ -64,7 +64,7 @@ let logout=()=>{
         localStorage.removeItem("userid");
         this.setState({loginFlag: false})
 }
-let displayIfLoggedIn = <div>
+let displayIfLoggedIn = <div >
     
     <h1>
         Browse banknotes 
@@ -94,7 +94,7 @@ let displayIfLoggedIn = <div>
         <option value="CHF">Swiss Franc (CHF)</option>     
     </select>
 
-    <button onClick={(event)=>{
+    <button className="btn btn-primary" onClick={(event)=>{
         //this does a PostgreSQL SELECT
         axios.post("http://localhost:3006/querysubmissions", {
             location: this.state.SelectedLocation,
@@ -112,7 +112,7 @@ let displayIfLoggedIn = <div>
       entry.currency === this.state.SelectedCurrency))
       }/>
 
-    <button onClick={(event)=>{logout()}}>
+    <button className="btn btn-link" onClick={(event)=>{logout()}}>
         logout
     </button>
 </div>

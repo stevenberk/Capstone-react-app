@@ -26,8 +26,8 @@ class Login extends React.Component{
             signupFlag: false,
           
         }
-//     }
-// componentDidMount() {
+    }
+componentDidMount() {
      axios.post('http://localhost:3006/seedaccountpage',
         {
             email:localStorage.getItem("email")
@@ -50,12 +50,14 @@ class Login extends React.Component{
 render(){
 let loginForms = 
 <div>
-    <form>
-        <label>Please Log In</label>
-        <input type="text" placeholder="Email" onChange={(event)=>{this.setState({email:event.target.value})}}/>
-        <input type="password" placeholder="Password" onChange={(event)=>{this.setState({password:event.target.value})}}/>
-    </form>
-    <button onClick={(event)=>{
+    <div className="form-group">
+        <form>
+            <label>Please Log In</label>
+            <input  type="text" placeholder="Email" onChange={(event)=>{this.setState({email:event.target.value})}}/>
+            <input  type="password" placeholder="Password" onChange={(event)=>{this.setState({password:event.target.value})}}/>
+        </form>
+    </div>
+    <button className="btn btn-primary" onClick={(event)=>{
 
 
         axios.post('http://localhost:3006/querylogin', {
@@ -76,7 +78,7 @@ let loginForms =
     }>
         Login
     </button>
-    <button onClick={(click)=>{
+    <button className="btn btn-primary" onClick={(click)=>{
         this.setState({signupFlag:true})
     }}>
         signup
