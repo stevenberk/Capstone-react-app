@@ -50,7 +50,7 @@ componentDidMount() {
 render(){
 let loginForms = 
 <div>
-    <div className="loginformContainer">
+    <div className="formContainer loginformContainer">
         <form className="signupforms logoutbutton">
             <label>Please Log In</label>
             <input className="spaceAlittle " type="text" placeholder="Email" onChange={(event)=>{this.setState({email:event.target.value})}}/>

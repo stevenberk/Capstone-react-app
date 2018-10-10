@@ -59,10 +59,13 @@ render()
                 {/* <p>Notes: {post.notes}</p>   */}
             </div> 
         )}
-    <button className="btn btn-link spaceAlittle logoutbutton" onClick={(event)=>{logout()}}>
+    <button className="dontshowdesktop btn btn-link spaceAlittle logoutbutton" onClick={(event)=>{logout()}}>
         logout
     </button>
         </div>
+        <button className="dontshowmobil btn btn-link spaceAlittle logoutbutton" onClick={(event)=>{logout()}}>
+        logout
+    </button>
     
     </div>  
 let logout=()=>{
@@ -75,7 +78,7 @@ let logout=()=>{
 let displayIfLoggedIn = <div >
     <div className="fixheader">
     <h1 >
-        Browse banknotes 
+        Browse banknotes for sale
     </h1>
     </div>
     <div className="formContainer flexrow">

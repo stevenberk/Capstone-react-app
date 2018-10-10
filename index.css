@@ -6,7 +6,23 @@ body {
   
 }
 
+.flexrow {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+}
 
+.flexcolumn {
+  position: relative;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  
+}
 
 .spaceAlittle {
   margin: .20em;
@@ -35,7 +51,6 @@ body {
 }
 
 .formContainer {
-  /* top: 78px; */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -46,12 +61,23 @@ body {
   width: 246px;
 }
 
-
 .cardSupplement {
   width: 18rem;
 }
 
-@media  screen and (max-width: 420px) and (min-width: 321px){
+.logoutbutton{
+  /* margin: .20em; */
+  width: 20%;
+}
+
+@media  screen  and (min-width: 421px){
+  .dontshowdesktop{
+    display: none;
+  }
+}
+
+
+@media  screen  and (min-width: 321px) and (max-width: 420px){
   .navHeader{
     display: flex;
     flex-direction: row;
@@ -108,6 +134,17 @@ body {
 
     
   }
+
+  .submittedPage {
+    top: 130px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+  }
+  
 
   .signupforms {
     display: flex;

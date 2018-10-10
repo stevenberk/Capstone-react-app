@@ -47,7 +47,7 @@ render(){
   let ArrayMapperRenderer = (props)=>
     <div >
     <div className="fixheader">
-    <h1>Your submissions:</h1>
+    <h1>Your banknote submissions:</h1>
     </div>
     <div className="flexrow "> 
        {props.submissions.map(post =>
@@ -70,7 +70,7 @@ render(){
           }}>Delete</button>  
       </div>  
       )}
-      <button className="btn btn-link spaceAlittle logoutbutton" onClick={(event)=>{
+      <button className=" dontshowdesktop   btn btn-link spaceAlittle logoutbutton" onClick={(event)=>{
        localStorage.removeItem("email");
        localStorage.removeItem("token");
        localStorage.removeItem("firstname");
@@ -80,6 +80,15 @@ render(){
       Log Out
     </button>
     </div>
+    <button className="dontshowmobil btn btn-link spaceAlittle logoutbutton" onClick={(event)=>{
+       localStorage.removeItem("email");
+       localStorage.removeItem("token");
+       localStorage.removeItem("firstname");
+       localStorage.removeItem("userid");
+       this.setState({loadedContent:false})
+      }}>
+      Log Out
+    </button>
     
   
 </div>
