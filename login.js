@@ -50,14 +50,15 @@ componentDidMount() {
 render(){
 let loginForms = 
 <div>
-    <div className="form-group">
-        <form>
+    <div className="loginformContainer">
+        <form className="signupforms logoutbutton">
             <label>Please Log In</label>
-            <input  type="text" placeholder="Email" onChange={(event)=>{this.setState({email:event.target.value})}}/>
-            <input  type="password" placeholder="Password" onChange={(event)=>{this.setState({password:event.target.value})}}/>
+            <input className="spaceAlittle " type="text" placeholder="Email" onChange={(event)=>{this.setState({email:event.target.value})}}/>
+            <input  className="spaceAlittle " type="password" placeholder="Password" onChange={(event)=>{this.setState({password:event.target.value})}}/>
         </form>
-    </div>
-    <button className="btn btn-primary" onClick={(event)=>{
+    
+    
+    <button className="btn btn-primary spaceAlittle logoutbutton" onClick={(event)=>{
 
 
         axios.post('http://localhost:3006/querylogin', {
@@ -78,11 +79,14 @@ let loginForms =
     }>
         Login
     </button>
-    <button className="btn btn-primary" onClick={(click)=>{
+    <button className="btn btn-primary spaceAlittle logoutbutton" onClick={(click)=>{
         this.setState({signupFlag:true})
     }}>
         signup
     </button>
+    <div >
+    </div>
+    </div>
 </div>
 
 let signuppage =

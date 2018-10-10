@@ -1,0 +1,211 @@
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: avenir;
+  text-align: center;
+  
+}
+
+
+
+.spaceAlittle {
+  margin: .20em;
+  
+}
+
+.Mycard {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+}
+
+.signupforms {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  
+}
+
+.formContainer {
+  /* top: 78px; */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.widthDropDown{
+  width: 246px;
+}
+
+
+.cardSupplement {
+  width: 18rem;
+}
+
+@media  screen and (max-width: 420px) and (min-width: 321px){
+  .navHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color:white;   
+    z-index: 5;
+  }
+  .fixheader{
+    position: fixed;
+    top: 24px;
+    width: 100%;
+    background-color:white;   
+    z-index: 5;
+    
+  }
+
+  .buyerfixheader{
+    position: fixed;
+    top: 24px;
+    width: 100%;
+    height: 50px;
+    background-color:white;   
+    z-index: 5;
+    
+  }
+
+  .buyerformContainer {
+    top: 72px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+
+  .formContainer {
+    top: 130px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+
+  .loginformContainer {
+    top: 130px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    
+  }
+
+  .signupforms {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    
+  }
+  
+  .flexrow {
+    top: 130px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: scroll;
+  }
+  
+  
+  .logoutbutton{
+    margin: .20em;
+    width: 288px;
+  }
+
+  .dontshowmobil{
+    display: none;
+  }
+
+  
+}
+
+@media  screen and (max-width: 320px){
+  .navHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color:white;   
+    z-index: 5;
+  }
+  .fixheader{
+    position: fixed;
+    top: 24px;
+    width: 100%;
+    height: 96px;
+    background-color:white;   
+    z-index: 5;
+    
+  }
+
+  .loginformContainer {
+    top: 130px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    
+  }
+
+  .signupforms {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    
+  }
+  
+
+  .formContainer {
+    top: 130px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  
+  .flexrow {
+    top: 130px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: scroll;
+  }
+  
+  
+  .logoutbutton{
+    margin: .20em;
+    width: 288px;
+  }
+
+  .dontshowmobil{
+    display: none;
+  }
+
+  
+}

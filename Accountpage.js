@@ -14,7 +14,7 @@ class Accountpage extends React.Component{
                 amount: 0,
                 valueinusd: 0,
                 selleremail: "",
-                sellername: '',
+                sellername: '', 
                 sellerid: '1' ,
                 // notes: ""
             }    
@@ -46,10 +46,12 @@ componentDidMount() {
 render(){
   let ArrayMapperRenderer = (props)=>
     <div >
+    <div className="fixheader">
     <h1>Your submissions:</h1>
+    </div>
     <div className="flexrow "> 
        {props.submissions.map(post =>
-        <div className="card spaceAlittle">
+        <div className="Mycard spaceAlittle cardSupplement">
           <h5>{post.amount} {post.currency}</h5> 
           <p>Value in USD: ${post.valueinusd}</p>
           <p>Your Email: {post.selleremail}</p>
@@ -68,8 +70,7 @@ render(){
           }}>Delete</button>  
       </div>  
       )}
-    </div>
-    <button className="btn btn-link" onClick={(event)=>{
+      <button className="btn btn-link spaceAlittle logoutbutton" onClick={(event)=>{
        localStorage.removeItem("email");
        localStorage.removeItem("token");
        localStorage.removeItem("firstname");
@@ -78,6 +79,8 @@ render(){
       }}>
       Log Out
     </button>
+    </div>
+    
   
 </div>
   

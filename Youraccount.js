@@ -31,8 +31,8 @@ class Youraccount extends React.Component{
     render(){
 
         return(
-            <div>
-                <h1>Welcome, thanks for signing up!</h1>
+            <div className="fixheader">
+                <h1 >Welcome, thanks for signing up!</h1>
                 <Login />
             </div>
         )

@@ -3,20 +3,6 @@ import axios from 'axios';
 
 import Login from './login';
 
-let ArrayMapperRenderer = (props)=>
-<div>    
-    <div className="flexrow ">
-        {props.submissions.map(post =>
-        <div className="card spaceAlittle">
-            <h5>{post.amount} {post.currency}</h5> 
-            <p>Value in USD: ${post.valueinusd}</p>
-            <p>Seller Email: {post.selleremail}</p>
-            <p>{post.location}</p>
-            {/* <p>Notes: {post.notes}</p>   */}
-        </div> 
-    )}
-    </div>
-</div>  
 
 
 
@@ -57,6 +43,28 @@ class buyerSearchPage extends React.Component{
 render() 
 
 {
+
+    let ArrayMapperRenderer = (props)=>
+    <div>    
+        <div className="flexrow">
+            {props.submissions.map(post =>
+            <div className="Mycard spaceAlittle cardSupplement" >
+                <h5>{post.amount} {post.currency}</h5> 
+                <p>Value in USD: 
+                    <br className="dontshowmobil"/>
+                ${post.valueinusd}</p>
+                <p>Seller Email:<br/> 
+                {post.selleremail}</p>
+                <p>{post.location}</p>
+                {/* <p>Notes: {post.notes}</p>   */}
+            </div> 
+        )}
+    <button className="btn btn-link spaceAlittle logoutbutton" onClick={(event)=>{logout()}}>
+        logout
+    </button>
+        </div>
+    
+    </div>  
 let logout=()=>{
         localStorage.removeItem("email");
         localStorage.removeItem("token");
@@ -65,11 +73,13 @@ let logout=()=>{
         this.setState({loginFlag: false})
 }
 let displayIfLoggedIn = <div >
-    
-    <h1>
+    <div className="fixheader">
+    <h1 >
         Browse banknotes 
     </h1>
-    <select value={this.state.SelectedLocation} onChange={(event)=>{this.setState({SelectedLocation:event.target.value})}} >
+    </div>
+    <div className="formContainer flexrow">
+    <select className="spaceAlittle  widthDropDown logoutbutton" value={this.state.SelectedLocation} onChange={(event)=>{this.setState({SelectedLocation:event.target.value})}} >
        <option value="SelectNULL">Select Location</option>
        <option value="Atlanta">Atlanta</option>
        <option value="Boston">Boston</option>
@@ -81,8 +91,8 @@ let displayIfLoggedIn = <div >
        <option value="Los Angeles">Los Angeles</option>
        <option value="Miami">Miami</option> 
     </select>
-    <select value={this.state.SelectedCurrency} onChange={(event)=>{this.setState({SelectedCurrency:event.target.value})}} >
-        <option value="SelectNULL">Select Currency</option>
+    <select className="spaceAlittle widthDropDown logoutbutton" value={this.state.SelectedCurrency} onChange={(event)=>{this.setState({SelectedCurrency:event.target.value})}} >
+        <option  value="SelectNULL">Select Currency</option>
         <option value="CAD">Canadian Dollar (CAD)</option>
         <option value="EUR">Euros (EUR)</option>
         <option value="GBP">GB Pounds (GBP)</option>
@@ -94,7 +104,7 @@ let displayIfLoggedIn = <div >
         <option value="CHF">Swiss Franc (CHF)</option>     
     </select>
 
-    <button className="btn btn-primary" onClick={(event)=>{
+    <button className="btn btn-primary  spaceAlittle logoutbutton" onClick={(event)=>{
         //this does a PostgreSQL SELECT
         axios.post("http://localhost:3006/querysubmissions", {
             location: this.state.SelectedLocation,
@@ -106,15 +116,14 @@ let displayIfLoggedIn = <div >
     }}
     
     >Search</button>
+    </div>
     
   <ArrayMapperRenderer submissions={this.state.SearchResults.filter(entry =>(
       entry.location === this.state.SelectedLocation &&
       entry.currency === this.state.SelectedCurrency))
       }/>
 
-    <button className="btn btn-link" onClick={(event)=>{logout()}}>
-        logout
-    </button>
+   
 </div>
 
 let pleaseLogIn = 
