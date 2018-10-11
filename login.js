@@ -49,7 +49,7 @@ componentDidMount() {
 
 render(){
 let loginForms = 
-<div className="submaincontainter">
+<div className="submaincontainter transition">
     <div className="buyersearchmenucontainer">
     <h1 className="pageheader">Please Log In</h1>
         <form className="buyerdropdowns spaceAlittle">

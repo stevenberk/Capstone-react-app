@@ -45,7 +45,7 @@ render()
 {
 
 let ArrayMapperRenderer = (props)=>
-<div className="merchcardcontainer">    
+<div className="merchcardcontainer transition">    
    
         {props.submissions.map(post =>
         <div className="merchcard" >
@@ -72,7 +72,7 @@ let logout=()=>{
         localStorage.removeItem("userid");
         this.setState({loginFlag: false})
 }
-let displayIfLoggedIn = <div className="submaincontainter" >
+let displayIfLoggedIn = <div className="submaincontainter transition" >
     <div className="pageheader">
     <h1 >
         Browse banknotes

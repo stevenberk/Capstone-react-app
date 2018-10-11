@@ -71,7 +71,7 @@ let logout=()=>{
 }
 
 let submitForms = 
-<div className="submaincontainter">
+<div className="submaincontainter transition">
     <div className="pageheader">
     <h1> 
         Post banknotes 
@@ -160,13 +160,13 @@ let submitForms =
 
 let alreadySubmitted = 
 <div className="submaincontainter">
-    <div className="buyersearchmenucontainer">
+    <div className="buyersearchmenucontainer transition">
         <h1 className="pageheader">
         Submitted!
         </h1>
     
         <button className="btn btn-primary btn-sm" onClick={(event)=>{this.setState({PostAgainButtonStatus:true})}}>
-            Submit Again
+            Make another submission
         </button>
     
         <button className="btn btn-link " onClick={(event)=>{logout()}}>

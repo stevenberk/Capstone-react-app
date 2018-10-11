@@ -45,7 +45,7 @@ class Accountpage extends React.Component{
 
 render(){
   let ArrayMapperRenderer = (props)=>
-    <div  className="submaincontainter">
+    <div  className="submaincontainter ">
     <div className="pageheader">
     <h1>Your banknote submissions:</h1>
     </div>
@@ -59,7 +59,7 @@ render(){
       logout
     </button>
     
-    <div className="merchcardcontainer"> 
+    <div className="accountmerchcardcontainer"> 
        {props.submissions.map(post =>
         <div  className="merchcard">
           <h5>{post.amount} {post.currency}</h5> 
@@ -89,7 +89,7 @@ render(){
   
 
 let UserAccountPage =
-<div className="newsubmaincontainter">
+<div className="newsubmaincontainter transition">
     <ArrayMapperRenderer submissions={this.state.SearchResults}/>
 </div>   
 

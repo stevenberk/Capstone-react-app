@@ -25,7 +25,7 @@ html, body{
   justify-content: center; 
   align-content: center;
   align-self: center;
-  
+
   
 
 }
@@ -44,7 +44,7 @@ html, body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
 }
 
 
@@ -54,8 +54,9 @@ html, body{
   color: darkcyan;
   text-align: center;
   margin-top: .5em;
-  -webkit-animation: fadein 2s;
-  /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+ 
+  
+  
 }
 
 
@@ -65,7 +66,6 @@ html, body{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  -webkit-animation: fadein 2s;
   width: 80%;
   margin: .1em;
 }
@@ -75,14 +75,13 @@ html, body{
 }
 
 
-/* used with classes: buyersearchmenucontainer, pageheader*/
+
 @keyframes fadein {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 
 
-/* container for cards */
 .merchcardcontainer{
   display: flex;
   flex-direction: row;
@@ -90,11 +89,23 @@ html, body{
   justify-content: space-evenly;
   align-items: center;
   width: 80%;
-  -webkit-animation: fadein 2s;
+  
 }
 
+.accountmerchcardcontainer{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  
+}
 
-/* cards that display on search and account page */
+.transition{
+-webkit-animation: fadein 2s;
+}
+
 .merchcard{
   position: relative;
   display: flex;
@@ -155,7 +166,6 @@ html, body{
     flex-direction: row;
     padding-left: 5%;
     padding-right: 5%;
-    -webkit-animation: fadein 2s;
   }
 
   .btn-primary{
@@ -173,7 +183,7 @@ p {
 .btn-primary {
   background-color: darkcyan;
   border: none;
-  -webkit-animation: fadein 2s;
+ 
 }
 .btn-primary:hover{
   background-color: darkcyan;
@@ -183,7 +193,7 @@ p {
 
 .btn-link{
   color: darkcyan;
-  -webkit-animation: fadein 2s;
+ 
 }
 
 .btn-link:hover{
