@@ -8,7 +8,7 @@ import About from './About';
 
 const App = () => (
   <BrowserRouter>
-    <div className="maincontainer">
+    <div className="mainpagecontainer">
       <div className="navbar">
         <div className="nav-item">
           <Link className="darkcyan" to="/about">About</Link>

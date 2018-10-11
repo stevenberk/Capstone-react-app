@@ -26,8 +26,8 @@ class Accountpage extends React.Component{
         
       
     }
-}
-componentDidMount() {
+// }
+// componentDidMount() {
     
     axios.get('http://localhost:3006/isloggedin', 
         {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}
@@ -48,6 +48,7 @@ render(){
     <div className="submaincontainter" >
     <div className="pageheader">
     <h1>Your banknote submissions:</h1>
+    </div>
     <button className="btn btn-link" onClick={(event)=>{
        localStorage.removeItem("email");
        localStorage.removeItem("token");
@@ -55,9 +56,9 @@ render(){
        localStorage.removeItem("userid");
        this.setState({loadedContent:false})
       }}>
-      Log Out
+      logout
     </button>
-    </div>
+    
     <div className="merchcardcontainer"> 
        {props.submissions.map(post =>
         <div  className="merchcard">

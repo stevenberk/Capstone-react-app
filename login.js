@@ -49,16 +49,17 @@ componentDidMount() {
 
 render(){
 let loginForms = 
-<div>
-    <div className="formContainer loginformContainer">
-        <form className="signupforms standardizedwidth">
-            <label>Please Log In</label>
-            <input className="spaceAlittle " type="text" placeholder="Email" onChange={(event)=>{this.setState({email:event.target.value})}}/>
-            <input  className="spaceAlittle " type="password" placeholder="Password" onChange={(event)=>{this.setState({password:event.target.value})}}/>
+<div className="submaincontainter">
+    <div className="buyersearchmenucontainer">
+    <h1 className="pageheader">Please Log In</h1>
+        <form className="buyerdropdowns spaceAlittle">
+            
+            <input className="spaceAlittle" type="text" placeholder="Email" onChange={(event)=>{this.setState({email:event.target.value})}}/>
+            <input  className="spaceAlittle" type="password" placeholder="Password" onChange={(event)=>{this.setState({password:event.target.value})}}/>
         </form>
     
     
-    <button className="btn btn-primary spaceAlittle standardizedwidth" onClick={(event)=>{
+    <button className="btn btn-primary btn-sm spaceAlittle" onClick={(event)=>{
 
 
         axios.post('http://localhost:3006/querylogin', {
@@ -79,7 +80,7 @@ let loginForms =
     }>
         Login
     </button>
-    <button className="btn btn-primary spaceAlittle standardizedwidth" onClick={(click)=>{
+    <button className="btn btn-primary btn-sm spaceAlittle" onClick={(click)=>{
         this.setState({signupFlag:true})
     }}>
         signup

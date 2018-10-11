@@ -71,14 +71,14 @@ let logout=()=>{
 }
 
 let submitForms = 
-<div>
+<div className="submaincontainter">
     <div className="pageheader">
     <h1> 
-        Post banknotes to sell
+        Post banknotes 
     </h1>
     </div>
-    <div className=" ">
-    <select className="" value={this.state.SelectedLocation} onChange={(event)=>{this.setState({SelectedLocation:event.target.value})}} >
+    <div className="buyersearchmenucontainer">
+    <select className="buyerdropdowns" value={this.state.SelectedLocation} onChange={(event)=>{this.setState({SelectedLocation:event.target.value})}} >
         <option value="NULL">Select Location</option>
         <option value="Atlanta">Atlanta</option>
         <option value="Boston">Boston</option>
@@ -90,7 +90,7 @@ let submitForms =
         <option value="Los Angeles">Los Angeles</option>
         <option value="Miami">Miami</option>  
     </select>
-    <select className="" value={this.state.SelectedCurrency} onChange={(event)=>{this.setState({SelectedCurrency:event.target.value})}} >
+    <select className="buyerdropdowns" value={this.state.SelectedCurrency} onChange={(event)=>{this.setState({SelectedCurrency:event.target.value})}} >
         <option value="NULL">Select Currency</option>
         <option value="CAD">Canadian Dollars (CAD)</option>
         <option value="EUR">Euros (EUR)</option>
@@ -103,7 +103,7 @@ let submitForms =
         <option value="CHF">Swiss Franc (CHF)</option>    
     </select>
       
-    <form   className="" value={this.state.Amount} onChange={(event)=>{this.setState({Amount:event.target.value})}}>
+    <form   className="buyerdropdowns" value={this.state.Amount} onChange={(event)=>{this.setState({Amount:event.target.value})}}>
         <input type="number" min="0" placeholder="Enter Amount" />
     </form>     
 
@@ -111,7 +111,9 @@ let submitForms =
         <input type="text"  placeholder="Notes" />
     </form>  */}
 
-    <button className="btn btn-primary" onClick={(event)=>{
+    <button className="btn btn-primary btn-sm" onClick={(event)=>{
+        if(this.state.Amount !== 0 && this.state.SelectedCurrency !== "NULL" && this.state.SelectedLocation !== "NULL" ){
+
         let submissionContentArray = [
             this.state.SelectedLocation, 
             this.state.SelectedCurrency, 
@@ -142,8 +144,10 @@ let submitForms =
 
             }) 
         
-        }}
-        >
+        }else{
+           alert('Please make a valid submission') 
+        }   
+    }}>
         Submit
     </button> 
 
@@ -155,19 +159,20 @@ let submitForms =
 </div>
 
 let alreadySubmitted = 
-<div >
-    <div className="">
-        <h1>
+<div className="submaincontainter">
+    <div className="buyersearchmenucontainer">
+        <h1 className="pageheader">
         Submitted!
         </h1>
-        <button className="btn btn-primary " onClick={(event)=>{this.setState({PostAgainButtonStatus:true})}}>
+    
+        <button className="btn btn-primary btn-sm" onClick={(event)=>{this.setState({PostAgainButtonStatus:true})}}>
             Submit Again
         </button>
-    <div>
+    
         <button className="btn btn-link " onClick={(event)=>{logout()}}>
         logout
         </button>
-    </div>
+   
     </div>
    
 </div>

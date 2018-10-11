@@ -75,7 +75,7 @@ let logout=()=>{
 let displayIfLoggedIn = <div className="submaincontainter" >
     <div className="pageheader">
     <h1 >
-        Browse banknotes for sale
+        Browse banknotes
     </h1>
     </div>
     <div className="buyersearchmenucontainer">

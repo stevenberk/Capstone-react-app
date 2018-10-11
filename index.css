@@ -5,7 +5,7 @@ html, body{
   line-height: 1;
  
 }
-.maincontainter{
+.mainpagecontainter{
   display: flex;
   flex-direction: column;
   font-family: avenir;
@@ -16,7 +16,8 @@ html, body{
 }
 
 .submaincontainter{
-  display: flex;
+
+  display:  flex;
   flex-direction: column;
   align-items: center;
   justify-content: center; 
@@ -33,6 +34,12 @@ html, body{
 }
 
 
+.buyersearchmenucontainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
 
 
 /* page headers */
@@ -45,12 +52,18 @@ html, body{
 
 
 /* search drop downs for buyer searh page */
-.buyersearchmenucontainer{
+.buyerdropdowns{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   -webkit-animation: fadein 2s;
+  width: 30%;
+  margin: .1em;
+}
+
+.spaceAlittle{
+  margin: .1em;
 }
 
 
@@ -60,10 +73,6 @@ html, body{
   to   { opacity: 1; }
 }
 
-.buyerdropdowns{
-  width: 100%;
-  margin: .1em;
-}
 
 /* container for cards */
 .merchcardcontainer{
@@ -114,9 +123,10 @@ html, body{
 @media screen and (min-width: 321px) and (max-width: 420px) {
 
   .buyerdropdowns{
-    width: 80%;
+    width: 100%;
     margin: .1em;
   }
+
   .merchcard{
     position: relative;
     display: flex;
@@ -137,6 +147,10 @@ html, body{
     -webkit-animation: fadein 2s;
   }
 
+  .btn-primary{
+    width: 100%;
+  }
+
 }
 
 /* BOOTSTRAP OVERRIDES */
@@ -148,6 +162,7 @@ p {
 .btn-primary {
   background-color: darkcyan;
   border: none;
+  -webkit-animation: fadein 2s;
 }
 .btn-primary:hover{
   background-color: darkcyan;
@@ -157,10 +172,12 @@ p {
 
 .btn-link{
   color: darkcyan;
+  -webkit-animation: fadein 2s;
 }
 
 .btn-link:hover{
   color: darkcyan;
+  transform: translate(1px, 1px);
 }
 
 .navbar{
