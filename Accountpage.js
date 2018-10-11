@@ -45,7 +45,7 @@ class Accountpage extends React.Component{
 
 render(){
   let ArrayMapperRenderer = (props)=>
-    <div className="submaincontainter" >
+    <div  className="submaincontainter">
     <div className="pageheader">
     <h1>Your banknote submissions:</h1>
     </div>
@@ -89,7 +89,7 @@ render(){
   
 
 let UserAccountPage =
-<div >
+<div className="newsubmaincontainter">
     <ArrayMapperRenderer submissions={this.state.SearchResults}/>
 </div>   
 
