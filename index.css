@@ -1,248 +1,179 @@
-body {
+html, body{
+  width: 100%;
+  height:100%;
+  margin: 0;
+  line-height: 1;
+ 
+}
+.maincontainter{
   display: flex;
   flex-direction: column;
   font-family: avenir;
-  text-align: center;
-  
-}
-
-.flexrow {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  
-}
-
-.flexcolumn {
-  position: relative;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
+  justify-content: center; 
   align-content: center;
-  
+  align-self: center;
 }
 
-.spaceAlittle {
-  margin: .20em;
-  
-}
-
-.Mycard {
-  position: relative;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 1px solid rgba(0,0,0,.125);
-  border-radius: .25rem;
-}
-
-.signupforms {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  
-}
-
-.formContainer {
-  position: relative;
+.submaincontainter{
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-}
-.widthDropDown{
-  width: 246px;
-}
-
-.cardSupplement {
-  width: 18rem;
+  justify-content: center; 
+  align-content: center;
+  align-self: center;
 }
 
-.logoutbutton{
-  /* margin: .20em; */
-  width: 20%;
+.darkcyan {
+  color: darkcyan;
+  font-family: 'Fredoka One', cursive;
+}
+.darkcyan:hover {
+  color: darkcyan; 
 }
 
-@media  screen  and (min-width: 421px){
-  .dontshowdesktop{
-    display: none;
+
+
+
+/* page headers */
+.pageheader{
+  font-family: 'Fredoka One', cursive;
+  color: darkcyan;
+  text-align: center;
+  -webkit-animation: fadein 2s;
+}
+
+
+/* search drop downs for buyer searh page */
+.buyersearchmenucontainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  -webkit-animation: fadein 2s;
+}
+
+
+/* used with classes: buyersearchmenucontainer, pageheader*/
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.buyerdropdowns{
+  width: 100%;
+  margin: .1em;
+}
+
+/* container for cards */
+.merchcardcontainer{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  -webkit-animation: fadein 2s;
+}
+
+
+/* cards that display on search and account page */
+.merchcard{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  border: 2px solid darkcyan;
+  border-radius: 2px;
+  width: 12rem;
+  height: 11rem;
+  text-align: center;
+  margin: .2em;
+  line-height: -2;
+  color: darkcyan;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.merchcard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transform: translate(1px, 1px);
+}
+
+.merchcardheader {
+  overflow: hidden;
+  border-bottom: solid;
+  height: 60%;
+  word-wrap: break-word;
+}
+
+.merchcardsubheader{
+  overflow-y:scroll;
+  height: 40%;
+}
+
+@media screen and (min-width: 321px) and (max-width: 420px) {
+
+  .buyerdropdowns{
+    width: 80%;
+    margin: .1em;
   }
-}
+  .merchcard{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin: .2em;
+   
+  }
 
-
-@media  screen  and (min-width: 321px) and (max-width: 420px){
-  .navHeader{
+  .merchcardcontainer{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color:white;   
-    z-index: 5;
-  }
-  .fixheader{
-    position: fixed;
-    top: 24px;
-    width: 100%;
-    background-color:white;   
-    z-index: 5;
-    
+    padding-left: 5%;
+    padding-right: 5%;
+    -webkit-animation: fadein 2s;
   }
 
-  .buyerfixheader{
-    position: fixed;
-    top: 24px;
-    width: 100%;
-    height: 50px;
-    background-color:white;   
-    z-index: 5;
-    
-  }
-
-  .buyerformContainer {
-    top: 72px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-  }
-
-  .formContainer {
-    top: 130px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-  }
-
-  .loginformContainer {
-    top: 130px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    
-  }
-
-  .submittedPage {
-    top: 130px;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    
-  }
-  
-
-  .signupforms {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    
-  }
-  
-  .flexrow {
-    top: 130px;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    overflow-x: scroll;
-  }
-  
-  
-  .logoutbutton{
-    margin: .20em;
-    width: 288px;
-  }
-
-  .dontshowmobil{
-    display: none;
-  }
-
-  
 }
 
-@media  screen and (max-width: 320px){
-  .navHeader{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color:white;   
-    z-index: 5;
-  }
-  .fixheader{
-    position: fixed;
-    top: 24px;
-    width: 100%;
-    height: 96px;
-    background-color:white;   
-    z-index: 5;
-    
-  }
+/* BOOTSTRAP OVERRIDES */
+p {
+  margin-top: 5px;
+  margin-bottom: 5.5px;
+}
 
-  .loginformContainer {
-    top: 130px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.btn-primary {
+  background-color: darkcyan;
+  border: none;
+}
+.btn-primary:hover{
+  background-color: darkcyan;
+  border: none;
+  transform: translate(1px, 1px);
+}
 
-    
-  }
+.btn-link{
+  color: darkcyan;
+}
 
-  .signupforms {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    
-  }
+.btn-link:hover{
+  color: darkcyan;
+}
+
+.navbar{
+  display:flex;
+  flex-direction: row;
+  border-bottom: solid;
+  justify-content: space-evenly;
+  width: 100%;
   
+  color: darkcyan;
+}
 
-  .formContainer {
-    top: 130px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-  }
-  
-  .flexrow {
-    top: 130px;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    overflow-x: scroll;
-  }
-  
-  
-  .logoutbutton{
-    margin: .20em;
-    width: 288px;
-  }
 
-  .dontshowmobil{
-    display: none;
-  }
-
-  
+.nav-item:hover{
+  transform: translate(1px, 1px);
 }

@@ -45,19 +45,28 @@ componentDidMount() {
 
 render(){
   let ArrayMapperRenderer = (props)=>
-    <div >
-    <div className="fixheader">
+    <div className="submaincontainter" >
+    <div className="pageheader">
     <h1>Your banknote submissions:</h1>
+    <button className="btn btn-link" onClick={(event)=>{
+       localStorage.removeItem("email");
+       localStorage.removeItem("token");
+       localStorage.removeItem("firstname");
+       localStorage.removeItem("userid");
+       this.setState({loadedContent:false})
+      }}>
+      Log Out
+    </button>
     </div>
-    <div className="flexrow "> 
+    <div className="merchcardcontainer"> 
        {props.submissions.map(post =>
-        <div className="Mycard spaceAlittle cardSupplement">
+        <div  className="merchcard">
           <h5>{post.amount} {post.currency}</h5> 
           <p>Value in USD: ${post.valueinusd}</p>
           <p>Your Email: {post.selleremail}</p>
           <p>Your Location: {post.location}</p>
           {/* <p>Notes: {post.notes}</p> */}
-          <button className="btn btn-secondary btn-sm" onClick={(event)=>{
+          <button className="btn btn-link " onClick={(event)=>{
              axios.post('http://localhost:3006/deletepost',  
                {id:post.postid}
               )
@@ -70,38 +79,22 @@ render(){
           }}>Delete</button>  
       </div>  
       )}
-      <button className=" dontshowdesktop   btn btn-link spaceAlittle logoutbutton" onClick={(event)=>{
-       localStorage.removeItem("email");
-       localStorage.removeItem("token");
-       localStorage.removeItem("firstname");
-       localStorage.removeItem("userid");
-       this.setState({loadedContent:false})
-      }}>
-      Log Out
-    </button>
+   
     </div>
-    <button className="dontshowmobil btn btn-link spaceAlittle logoutbutton" onClick={(event)=>{
-       localStorage.removeItem("email");
-       localStorage.removeItem("token");
-       localStorage.removeItem("firstname");
-       localStorage.removeItem("userid");
-       this.setState({loadedContent:false})
-      }}>
-      Log Out
-    </button>
+  
     
   
 </div>
   
 
 let UserAccountPage =
-<div>
+<div >
     <ArrayMapperRenderer submissions={this.state.SearchResults}/>
 </div>   
 
 
 let BackToLogin =
-<div>
+<div >
   <Login />
 </div>
 

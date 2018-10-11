@@ -44,30 +44,27 @@ render()
 
 {
 
-    let ArrayMapperRenderer = (props)=>
-    <div>    
-        <div className="flexrow">
-            {props.submissions.map(post =>
-            <div className="Mycard spaceAlittle cardSupplement" >
-                <h5>{post.amount} {post.currency}</h5> 
-                <p>Value in USD: 
-                    <br className="dontshowmobil"/>
-                ${post.valueinusd}</p>
-                <p>Seller Email:<br/> 
-                {post.selleremail}</p>
-                <p>{post.location}</p>
-                {/* <p>Notes: {post.notes}</p>   */}
-            </div> 
+let ArrayMapperRenderer = (props)=>
+<div className="merchcardcontainer">    
+   
+        {props.submissions.map(post =>
+        <div className="merchcard" >
+            <div className="merchcardheader">
+            <h3>{post.amount} {post.currency}</h3> 
+            <h4>Value in USD: ${post.valueinusd}</h4>
+            </div>
+            <div className="merchcardsubheader">
+            <p>Seller Email:<br/> 
+            {post.selleremail}</p>
+            <p>{post.location}</p>
+            {/* <p>Notes: {post.notes}</p>   */}
+            </div>
+        </div> 
         )}
-    <button className="dontshowdesktop btn btn-link spaceAlittle logoutbutton" onClick={(event)=>{logout()}}>
-        logout
-    </button>
-        </div>
-        <button className="dontshowmobil btn btn-link spaceAlittle logoutbutton" onClick={(event)=>{logout()}}>
-        logout
-    </button>
     
-    </div>  
+    
+</div>
+
 let logout=()=>{
         localStorage.removeItem("email");
         localStorage.removeItem("token");
@@ -75,14 +72,14 @@ let logout=()=>{
         localStorage.removeItem("userid");
         this.setState({loginFlag: false})
 }
-let displayIfLoggedIn = <div >
-    <div className="fixheader">
+let displayIfLoggedIn = <div className="submaincontainter" >
+    <div className="pageheader">
     <h1 >
         Browse banknotes for sale
     </h1>
     </div>
-    <div className="formContainer flexrow">
-    <select className="spaceAlittle  widthDropDown logoutbutton" value={this.state.SelectedLocation} onChange={(event)=>{this.setState({SelectedLocation:event.target.value})}} >
+    <div className="buyersearchmenucontainer">
+    <select className="buyerdropdowns" value={this.state.SelectedLocation} onChange={(event)=>{this.setState({SelectedLocation:event.target.value})}} >
        <option value="SelectNULL">Select Location</option>
        <option value="Atlanta">Atlanta</option>
        <option value="Boston">Boston</option>
@@ -94,7 +91,7 @@ let displayIfLoggedIn = <div >
        <option value="Los Angeles">Los Angeles</option>
        <option value="Miami">Miami</option> 
     </select>
-    <select className="spaceAlittle widthDropDown logoutbutton" value={this.state.SelectedCurrency} onChange={(event)=>{this.setState({SelectedCurrency:event.target.value})}} >
+    <select className="buyerdropdowns" value={this.state.SelectedCurrency} onChange={(event)=>{this.setState({SelectedCurrency:event.target.value})}} >
         <option  value="SelectNULL">Select Currency</option>
         <option value="CAD">Canadian Dollar (CAD)</option>
         <option value="EUR">Euros (EUR)</option>
@@ -107,7 +104,7 @@ let displayIfLoggedIn = <div >
         <option value="CHF">Swiss Franc (CHF)</option>     
     </select>
 
-    <button className="btn btn-primary  spaceAlittle logoutbutton" onClick={(event)=>{
+    <button className="btn btn-primary btn-sm" onClick={(event)=>{
         //this does a PostgreSQL SELECT
         axios.post("http://localhost:3006/querysubmissions", {
             location: this.state.SelectedLocation,
@@ -119,6 +116,9 @@ let displayIfLoggedIn = <div >
     }}
     
     >Search</button>
+    <button className="btn btn-link" onClick={(event)=>{logout()}}>
+            logout
+        </button>
     </div>
     
   <ArrayMapperRenderer submissions={this.state.SearchResults.filter(entry =>(

@@ -8,19 +8,19 @@ import About from './About';
 
 const App = () => (
   <BrowserRouter>
-    <div>
-      <div className="navHeader">
-        <div>
-          <Link to="/about">About</Link>
+    <div className="maincontainer">
+      <div className="navbar">
+        <div className="nav-item">
+          <Link className="darkcyan" to="/about">About</Link>
         </div>
-        <div>
-          <Link to="/login">Account</Link>
+        <div className="nav-item">
+          <Link className="darkcyan" to="/login">Account</Link>
         </div>
-        <div>
-          <Link to="/sell">Sell</Link>
+        <div className="nav-item">
+          <Link className="darkcyan" to="/sell">Sell</Link>
         </div>
-        <div>
-          <Link to="/buy">Buy</Link>
+        <div className="nav-item">
+          <Link className="darkcyan" to="/buy">Buy</Link>
         </div>
       </div>
       <Route path="/" component={Login} exact/>

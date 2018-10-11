@@ -72,13 +72,13 @@ let logout=()=>{
 
 let submitForms = 
 <div>
-    <div className="fixheader">
+    <div className="pageheader">
     <h1> 
         Post banknotes to sell
     </h1>
     </div>
-    <div className="formContainer ">
-    <select className="spaceAlittle  logoutbutton" value={this.state.SelectedLocation} onChange={(event)=>{this.setState({SelectedLocation:event.target.value})}} >
+    <div className=" ">
+    <select className="" value={this.state.SelectedLocation} onChange={(event)=>{this.setState({SelectedLocation:event.target.value})}} >
         <option value="NULL">Select Location</option>
         <option value="Atlanta">Atlanta</option>
         <option value="Boston">Boston</option>
@@ -90,7 +90,7 @@ let submitForms =
         <option value="Los Angeles">Los Angeles</option>
         <option value="Miami">Miami</option>  
     </select>
-    <select className="spaceAlittle  logoutbutton" value={this.state.SelectedCurrency} onChange={(event)=>{this.setState({SelectedCurrency:event.target.value})}} >
+    <select className="" value={this.state.SelectedCurrency} onChange={(event)=>{this.setState({SelectedCurrency:event.target.value})}} >
         <option value="NULL">Select Currency</option>
         <option value="CAD">Canadian Dollars (CAD)</option>
         <option value="EUR">Euros (EUR)</option>
@@ -103,7 +103,7 @@ let submitForms =
         <option value="CHF">Swiss Franc (CHF)</option>    
     </select>
       
-    <form   className="logoutbutton" value={this.state.Amount} onChange={(event)=>{this.setState({Amount:event.target.value})}}>
+    <form   className="" value={this.state.Amount} onChange={(event)=>{this.setState({Amount:event.target.value})}}>
         <input type="number" min="0" placeholder="Enter Amount" />
     </form>     
 
@@ -111,7 +111,7 @@ let submitForms =
         <input type="text"  placeholder="Notes" />
     </form>  */}
 
-    <button className="spaceAlittle logoutbutton btn btn-primary" onClick={(event)=>{
+    <button className="btn btn-primary" onClick={(event)=>{
         let submissionContentArray = [
             this.state.SelectedLocation, 
             this.state.SelectedCurrency, 
@@ -147,7 +147,7 @@ let submitForms =
         Submit
     </button> 
 
-    <button className="btn btn-link spaceAlittle logoutbutton" onClick={(event)=>{logout()}}>
+    <button className="btn btn-link " onClick={(event)=>{logout()}}>
     logout
     </button>
 
@@ -156,15 +156,15 @@ let submitForms =
 
 let alreadySubmitted = 
 <div >
-    <div className="flexcolumn submittedPage">
+    <div className="">
         <h1>
         Submitted!
         </h1>
-        <button className="btn btn-primary logoutbutton" onClick={(event)=>{this.setState({PostAgainButtonStatus:true})}}>
+        <button className="btn btn-primary " onClick={(event)=>{this.setState({PostAgainButtonStatus:true})}}>
             Submit Again
         </button>
     <div>
-        <button className="btn btn-link logoutbutton" onClick={(event)=>{logout()}}>
+        <button className="btn btn-link " onClick={(event)=>{logout()}}>
         logout
         </button>
     </div>
