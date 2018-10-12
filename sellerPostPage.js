@@ -21,20 +21,11 @@ class SellerPostPage extends React.Component{
             sellername: localStorage.getItem("firstname"),
             sellerid: localStorage.getItem("userid"),
             PostAgainButtonStatus: true,
-            loginFlag: false
+          
         }
  
-        
-
-        axios.get('http://localhost:3006/isloggedin', {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}})
-        .then(response => {
-            if (response.data === "yes" && this.state.loginFlag === false){
-                this.setState({loginFlag : true})
-                
-                ;
-            }
-        })
-   
+    // }
+    // componentDidMount() {   
 
     }
 
@@ -67,7 +58,7 @@ let logout=()=>{
     localStorage.removeItem("token");
     localStorage.removeItem("firstname");
     localStorage.removeItem("userid");
-    this.setState({loginFlag: false})
+    window.location.reload();
 }
 
 let submitForms = 
@@ -177,13 +168,9 @@ let alreadySubmitted =
    
 </div>
 
-let pleaseLogOn =
-<div>
-    <Login />
-</div>
 
 let turnaryOutput;
-!this.state.loginFlag ? turnaryOutput = pleaseLogOn : this.state.PostAgainButtonStatus ? turnaryOutput = submitForms : turnaryOutput = alreadySubmitted
+this.state.PostAgainButtonStatus ? turnaryOutput = submitForms : turnaryOutput = alreadySubmitted
 
 return(turnaryOutput)
 

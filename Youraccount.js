@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Login from './login';
+import Accountpage from './Accountpage';
 
 
 class Youraccount extends React.Component{
@@ -31,8 +32,10 @@ class Youraccount extends React.Component{
     render(){
 
         return(
-            <div className="fixheader">
+            <div className="transition">
+                <div className="pageheader">
                 <h1 >Welcome, thanks for signing up!</h1>
+                </div>
                 <Login />
             </div>
         )

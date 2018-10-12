@@ -25,18 +25,8 @@ class buyerSearchPage extends React.Component{
                 }    
             ],
             SelectedLocation: "null",
-            SelectedCurrency: "null",
-            loginFlag: false
+            SelectedCurrency: "null"
     }
-    axios.get('http://localhost:3006/isloggedin', {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}})
-        .then(response => {
-            if (response.data === "yes" && this.state.loginFlag === false){
-                this.setState({loginFlag : true});
-                   
-                }else{
-                
-                    }
-                })
     }
 
  
@@ -46,23 +36,19 @@ render()
 
 let ArrayMapperRenderer = (props)=>
 <div className="merchcardcontainer transition">    
-   
         {props.submissions.map(post =>
-        <div className="merchcard" >
-            <div className="merchcardheader">
-            <h3>{post.amount} {post.currency}</h3> 
-            <h4>Value in USD: ${post.valueinusd}</h4>
+            <div className="merchcard" >
+                <div className="merchcardheader">
+                    <h3>{post.amount} {post.currency}</h3> 
+                <h4>Value in USD: ${post.valueinusd}</h4>
             </div>
             <div className="merchcardsubheader">
-            <p>Seller Email:<br/> 
-            {post.selleremail}</p>
-            <p>{post.location}</p>
-            {/* <p>Notes: {post.notes}</p>   */}
+                <p>Seller Email:<br/>{post.selleremail}</p>
+                <p>{post.location}</p>
+                {/* <p>Notes: {post.notes}</p>   */}
             </div>
         </div> 
-        )}
-    
-    
+    )}
 </div>
 
 let logout=()=>{
@@ -70,7 +56,7 @@ let logout=()=>{
         localStorage.removeItem("token");
         localStorage.removeItem("firstname");
         localStorage.removeItem("userid");
-        this.setState({loginFlag: false})
+        window.location.reload();
 }
 let displayIfLoggedIn = <div className="submaincontainter transition" >
     <div className="pageheader">
@@ -129,16 +115,8 @@ let displayIfLoggedIn = <div className="submaincontainter transition" >
    
 </div>
 
-let pleaseLogIn = 
-<div>
 
-    <Login />
-    
-</div>
-
-let turnaryOutputDisplay;
-!this.state.loginFlag ? turnaryOutputDisplay = pleaseLogIn : turnaryOutputDisplay = displayIfLoggedIn 
-return (turnaryOutputDisplay)   
+return (displayIfLoggedIn)   
 }
 }
 

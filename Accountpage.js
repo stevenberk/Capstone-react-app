@@ -21,26 +21,16 @@ class Accountpage extends React.Component{
         ],
         email: "null",
         password: "password",
-        loginFlag: false,
         loadedContent: false
         
       
-    }
-// }
-// componentDidMount() {
-    
-    axios.get('http://localhost:3006/isloggedin', 
-        {headers: {"authorization" : `Bearer ${localStorage.getItem("token")}`}
-    })
-    .then(response => {
-        if (response.data === "yes" && this.state.loginFlag === false){
-            this.setState({loginFlag : true})
-        }
-    }).then(axios.post('http://localhost:3006/seedaccountpage',
+    }  
+        axios.post('http://localhost:3006/seedaccountpage',
     {
         email:localStorage.getItem("email")
-    })
-    .then((response)=> this.setState({SearchResults: response.data, loadedContent:true})))
+    })   
+    .then((response)=> {this.setState({SearchResults: response.data, loadedContent:true})})
+    
 }
 
 render(){
@@ -54,7 +44,8 @@ render(){
        localStorage.removeItem("token");
        localStorage.removeItem("firstname");
        localStorage.removeItem("userid");
-       this.setState({loadedContent:false})
+       this.setState({loadedContent:false});
+       window.location.reload();
       }}>
       logout
     </button>
@@ -94,13 +85,9 @@ let UserAccountPage =
 </div>   
 
 
-let BackToLogin =
-<div >
-  <Login />
-</div>
 
 
-return (this.state.loadedContent ? UserAccountPage : BackToLogin )
+return (UserAccountPage)
 }
 
 }

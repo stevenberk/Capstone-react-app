@@ -41,7 +41,8 @@ let SignupForms =
                 password: this.state.password,
                 firstname: this.state.firstname,
                 lastname: this.state.lastname
-            }).then(this.setState({loginFlag:true}))
+            }).then(this.setState({loginFlag:true})
+        )
         }else{
             alert("invalid signup credentials")
         }
